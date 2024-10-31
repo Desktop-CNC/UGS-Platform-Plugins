@@ -1,0 +1,1 @@
+# ugs-platform-plugin-camera-logger
