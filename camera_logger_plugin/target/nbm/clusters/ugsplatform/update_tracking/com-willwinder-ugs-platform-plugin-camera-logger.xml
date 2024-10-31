@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="com.willwinder.ugs.platform.plugin.camera.logger">
+    <module_version install_time="1730415184683" last="true" origin="installer" specification_version="2.0">
+        <file crc="1539498244" name="config/Modules/com-willwinder-ugs-platform-plugin-camera-logger.xml"/>
+        <file crc="1692488148" name="modules/com-willwinder-ugs-platform-plugin-camera-logger.jar"/>
+        <file crc="3361721704" name="update_tracking/com-willwinder-ugs-platform-plugin-camera-logger.xml"/>
+    </module_version>
+</module>

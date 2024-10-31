@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+OpenIDE-Module-Localizing-Bundle: com/willwinder/ugs/platform/plugin/c
+ amera/logger/Bundle.properties
+OpenIDE-Module-Specification-Version: 2.0
+OpenIDE-Module-Implementation-Version: 2.0-20241031
+OpenIDE-Module-Build-Version: 202410312253
+OpenIDE-Module: com.willwinder.ugs.platform.plugin.camera.logger
+OpenIDE-Module-Public-Packages: -
+OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1
+OpenIDE-Module-Display-Category: com.willwinder
+OpenIDE-Module-Name: ugs-platform-plugin-camera-logger
+OpenIDE-Module-Short-Description: Universal Gcode Sender Library
+OpenIDE-Module-Long-Description: Universal Gcode Sender Library
+OpenIDE-Module-Module-Dependencies: org.netbeans.api.annotations.commo
+ n/1 > 1.53
+
