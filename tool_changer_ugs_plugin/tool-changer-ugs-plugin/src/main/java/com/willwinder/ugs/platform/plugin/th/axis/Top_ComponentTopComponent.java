@@ -63,19 +63,68 @@ public final class Top_ComponentTopComponent extends TopComponent {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        toolTable = new javax.swing.JTable();
+
+        toolTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, "Test", "Description",  new Float(0.5), null},
+                {null, "Test2", "Second",  new Float(1.0), null}
+            },
+            new String [] {
+                "Tool ID #", "Tool Name", "Description", "Diameter (in)", ""
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Byte.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(toolTable);
+        if (toolTable.getColumnModel().getColumnCount() > 0) {
+            toolTable.getColumnModel().getColumn(0).setResizable(false);
+            toolTable.getColumnModel().getColumn(0).setHeaderValue(org.openide.util.NbBundle.getMessage(Top_ComponentTopComponent.class, "Top_ComponentTopComponent.toolTable.columnModel.title0")); // NOI18N
+            toolTable.getColumnModel().getColumn(1).setResizable(false);
+            toolTable.getColumnModel().getColumn(1).setHeaderValue(org.openide.util.NbBundle.getMessage(Top_ComponentTopComponent.class, "Top_ComponentTopComponent.toolTable.columnModel.title1")); // NOI18N
+            toolTable.getColumnModel().getColumn(2).setResizable(false);
+            toolTable.getColumnModel().getColumn(2).setHeaderValue(org.openide.util.NbBundle.getMessage(Top_ComponentTopComponent.class, "Top_ComponentTopComponent.toolTable.columnModel.title2")); // NOI18N
+            toolTable.getColumnModel().getColumn(3).setResizable(false);
+            toolTable.getColumnModel().getColumn(3).setHeaderValue(org.openide.util.NbBundle.getMessage(Top_ComponentTopComponent.class, "Top_ComponentTopComponent.toolTable.columnModel.title3")); // NOI18N
+            toolTable.getColumnModel().getColumn(4).setResizable(false);
+            toolTable.getColumnModel().getColumn(4).setHeaderValue(org.openide.util.NbBundle.getMessage(Top_ComponentTopComponent.class, "Top_ComponentTopComponent.toolTable.columnModel.title4")); // NOI18N
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(113, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable toolTable;
     // End of variables declaration//GEN-END:variables
     @Override
     public void componentOpened() {

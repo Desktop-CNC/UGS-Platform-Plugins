@@ -1,0 +1,504 @@
+-------------------------------------------------------------------------------
+>Log Session: Friday, November 8, 2024 at 9:56:09 PM Eastern Standard Time
+>System Info: 
+  Product Version         = Apache NetBeans IDE 23
+  Operating System        = Linux version 6.9.3-76060903-generic running on amd64
+  Java; VM; Vendor        = 17.0.12; OpenJDK 64-Bit Server VM 17.0.12+7-Ubuntu-1ubuntu224.04; Ubuntu
+  Runtime                 = OpenJDK Runtime Environment 17.0.12+7-Ubuntu-1ubuntu224.04
+  Java Home               = /usr/lib/jvm/java-17-openjdk-amd64
+  System Locale; Encoding = en_US (nb); UTF-8
+  Home Directory          = /home/camren-chraplak
+  Current Directory       = /media/Files/WPI/MQP/UGS/Universal-G-Code-Sender-2.1.9/ugs-platform/ugs-platform-plugin-4th-axis
+  User Directory          = /media/Files/WPI/MQP/UGS/Universal-G-Code-Sender-2.1.9/ugs-platform/ugs-platform-plugin-4th-axis/target/userdir
+  Cache Directory         = /media/Files/WPI/MQP/UGS/Universal-G-Code-Sender-2.1.9/ugs-platform/ugs-platform-plugin-4th-axis/target/userdir/var/cache
+  Installation            = /usr/lib/apache-netbeans/nb
+                            /usr/lib/apache-netbeans/ergonomics
+                            /usr/lib/apache-netbeans/ide
+                            /usr/lib/apache-netbeans/extide
+                            /usr/lib/apache-netbeans/java
+                            /usr/lib/apache-netbeans/apisupport
+                            /usr/lib/apache-netbeans/webcommon
+                            /usr/lib/apache-netbeans/websvccommon
+                            /usr/lib/apache-netbeans/enterprise
+                            /usr/lib/apache-netbeans/profiler
+                            /usr/lib/apache-netbeans/php
+                            /usr/lib/apache-netbeans/harness
+                            /usr/lib/apache-netbeans/cpplite
+                            /usr/lib/apache-netbeans/groovy
+                            /usr/lib/apache-netbeans/javafx
+                            /media/Files/WPI/MQP/UGS/Universal-G-Code-Sender-2.1.9/ugs-platform/ugs-platform-plugin-4th-axis/target/netbeans_clusters/ugsplatform
+                            /usr/lib/apache-netbeans/platform
+  Boot & Ext. Classpath   = 
+  Application Classpath   = /usr/lib/apache-netbeans/platform/lib/boot.jar:/usr/lib/apache-netbeans/platform/lib/org-openide-modules.jar:/usr/lib/apache-netbeans/platform/lib/org-openide-util.jar:/usr/lib/apache-netbeans/platform/lib/org-openide-util-lookup.jar:/usr/lib/apache-netbeans/platform/lib/org-openide-util-ui.jar
+  Startup Classpath       = /usr/lib/apache-netbeans/platform/core/core.jar:/usr/lib/apache-netbeans/platform/core/org-openide-filesystems-compat8.jar:/usr/lib/apache-netbeans/platform/core/core-base.jar:/usr/lib/apache-netbeans/platform/core/org-netbeans-libs-asm.jar:/usr/lib/apache-netbeans/platform/core/asm-9.7.jar:/usr/lib/apache-netbeans/platform/core/asm-commons-9.7.jar:/usr/lib/apache-netbeans/platform/core/org-openide-filesystems.jar:/usr/lib/apache-netbeans/platform/core/asm-tree-9.7.jar:/usr/lib/apache-netbeans/nb/core/org-netbeans-upgrader.jar:/usr/lib/apache-netbeans/nb/core/locale/core_nb.jar
+-------------------------------------------------------------------------------
+WARNING [org.netbeans.modules.netbinox]: Cannot compute install area. No common prefix between /usr/lib/apache-netbeans/ and /media/Files/WPI/MQP/UGS/Universal-G-Code-Sender-2.1.9/ugs-platform/ugs-platform-plugin-4th-axis/target/netbeans_clusters/ugsplatform
+INFO [org.netbeans.modules.netbinox]: Install area set to file:/usr/lib/apache-netbeans/
+WARNING [org.netbeans.core.modules]: the modules [org.netbeans.modules.xml.text] use org.netbeans.modules.editor.deprecated.pre65formatting which is deprecated.
+WARNING [org.netbeans.core.modules]: the modules [org.netbeans.modules.ide.kit, org.netbeans.modules.xml.text] use org.netbeans.modules.editor.structure which is deprecated.
+INFO [org.netbeans.core.startup.NbEvents]: Turning on modules:
+	slf4j.jdk14 [1.7.36 1.7.36]
+	slf4j.api [1.7.36 1.7.36]
+	org.openide.util.lookup [8.59 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.openide.util [9.33 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.openide.util.ui [9.34 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.openide.modules [7.73 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.api.annotations.common/1 [1.53 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.openide.filesystems [9.38 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.openide.awt [7.93 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.api.progress/1 [1.73 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.api.progress.nb [1.73 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.openide.dialogs [7.72 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.openide.nodes [7.70 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.openide.windows [6.102 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.batik.read [1.20.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.openide.util.ui.svg [1.19 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.mimelookup/1 [1.65 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.openide.text [6.93 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.api.scripting [1.22 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.swing.tabcontrol [1.82 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.swing.outline [1.59 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.openide.explorer [6.87 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.openide.actions [6.64 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.queries/1 [1.68 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.api.templates [1.33 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.openide.filesystems.nb [9.35 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.openide.loaders [7.95 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.api.intent [1.27 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.api.io [1.28 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.openide.io [1.74 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.openide.filesystems.compat8 [9.34 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.openide.execution [9.28 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.upgrader [4.60 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.swing.plaf [1.67 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.keyring [1.49 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.asm [5.28 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.bootstrap/1 [2.104 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.core.startup.base [1.87.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.core.startup/1 [1.88.0.1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.sampler [1.39 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.core/2 [3.76 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.spi.quicksearch [1.52 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.options.api/1 [1.70 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.flatlaf/1 [1.19 3.5.1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.swing.laf.flatlaf [1.18 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.swing.laf.dark/1 [2.20.0.2 2 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.projectapi/1 [1.96 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.swing.dirchooser [1.54 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.spi.viewmodel/2 [1.76 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.spi.tasklist/1 [1.60.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.spi.palette/1 [1.71 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.spi.navigator/1 [1.63 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.settings/1 [1.82 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.util/1 [1.90 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.document [1.34.0.3 3 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.lexer/2 [1.88.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.lib2/1 [2.45.0.55.3 55 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.api.lsp/1 [1.28 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.settings.lib [1.76.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.fold/1 [1.70 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.indent/2 [1.68 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.guards/1 [1.58 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.lib/3 [4.32.0.23.3.55 23 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.spi.editor.hints/0 [1.67.0.8.55 8 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.projectuiapi.base/1 [1.111.0.9 9 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.projectuiapi/1 [1.114.0.8 8 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.tools.storage [1.33 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.options.keymap [1.62 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.settings.storage/1 [1.77.0.1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.fold.nbui [1.37.0.55 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor/3 [1.112.0.6.3.23.55 6 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.options.editor/1 [1.85 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.spi.editor.hints.projects [1.36.0.1.8 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.api.debugger/1 [1.80 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.spi.debugger.ui/1 [2.83 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.core.multiview/1 [1.69 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.api.xml/1 [1.69 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.xml.core/2 [1.68.0.4 4 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.xml.xam/1 [1.57.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.api.xml.ui/1 [1.69 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.apache.xml.resolver [1.56.0.12 12 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.xml.retriever/1 [1.56 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.xml.schema.model/1 [1.57.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.xml.axi [1.58 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.indent.support [1.67 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.api.java.classpath/1 [1.79 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.lucene/3 [3.44 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.masterfs/2 [2.80.0.2 2 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.parsing.lucene/2 [2.61.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.parsing.api/1 [9.32.0.8 8 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.breadcrumbs/0 [1.42 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.bracesmatching/0 [1.64.0.55 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.deprecated.pre65formatting/0 [1.56.0.1.6.23.55 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.errorstripe.api/1 [2.57.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.errorstripe/2 [2.59.0.1.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.completion/1 [1.70.0.2 2 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.codetemplates/1 [1.69.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.actions/1 [1.56.0.55 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.project.indexingbridge [1.42 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.parsing.indexing [9.34.0.1.3.8 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.diff/1 [1.76.0.42.1 42 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.refactoring.api [1.72.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.csl.types/1 [1.25 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.core.ui/1 [1.70 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.api.search [1.46 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.jumpto/1 [1.80.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.csl.api/2 [2.83.0.2.1.1.8.1 2 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.structure/1 [1.72.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.xml.lexer [1.55 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.xml.text/2 [1.84.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.xml [1.58 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.core.ide/1 [1.66 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.servletapi/1 [1.64 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.httpserver/2 [2.61.0.43 43 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.xsl/1 [1.69 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.xml.xdm/1 [1.59.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.xerces/1 [1.63.0.281 281 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.xml.tax/2 [1.69.0.281 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.xml.tools/2 [1.68 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.xml.schema.completion [1.56 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.xml.catalog/2 [3.29.0.4 4 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.xml.catalog.ui [2.28.0.4 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.json_simple/1 [0.37 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.web.common [1.124 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.web.indent [1.45 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.extexecution.base/2 [1.31 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.extexecution/2 [1.74 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.web.common.ui [1.26 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.gsf.testrunner/2 [2.37 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.gsf.testrunner.ui [1.40.0.1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.gototest/1 [1.58 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.project.libraries/1 [1.78 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.project.libraries.ui/1 [1.77 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.html.indexing [1.17 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.extbrowser/1 [1.78 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.settings/1 [1.74 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.web.browser.api [1.70 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.gsf.codecoverage [1.57 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.project.spi.intern [1.28 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.project.ant/1 [1.92 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.web.clientproject.api [1.129 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.versioning.core/1 [1.56.0.1.42 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.versioning/1 [1.72.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.favorites/1 [1.71 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.spellchecker.apimodule [1.50 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.versioning.util/2 [2.1.0.42.1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.team.commons [1.75 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.versioning.ui/1 [1.48.0.42.1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.autoupdate.services [1.81 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.autoupdate.ui [1.71 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.versioning.system.cvss.installer [1.41 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.masterfs.ui [2.28.0.2 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.versioning.masterfs [1.39 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.versioning.indexingbridge/0 [1.51 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.api.dashboard/0 [0.2 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.sendopts/2 [2.61 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.utilities/1 [1.86 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.utilities.project/1 [1.63 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.javahelp/1 [2.66 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.usersguide/1 [1.73 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.updatecenters/1 [1.65 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.jcodings/1 [0.14 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	com.google.gson [2.11.0 2.11.0]
+	org.netbeans.modules.textmate.lexer/0 [1.25.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.terminal [1.52 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.lib.terminalemulator [1.62 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.terminal.nb [1.25 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.templates/1 [1.32 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.team.ide [1.39 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.tasklist.ui/1 [1.56.0.1.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.tasklist.todo/1 [1.56.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.tasklist.projectint/1 [1.54 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.tasklist.kit [1.53 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.ini4j/1 [1.59 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.svnClientAdapter/1 [1.65 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.subversion [1.67.0.42.1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.plain.lib/1 [1.58 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.spellchecker [1.60.0.1.8 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.spellchecker.kit [1.50 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.spellchecker.dictionary_en [1.47 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.properties/1 [1.80 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.properties.syntax/1 [1.75 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.spellchecker.bindings.properties [1.47 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.html.lexer/1 [1.63 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.spellchecker.bindings.htmlxml [1.52 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.server/0 [1.58 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.selenium2.server [1.28 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.selenium2 [1.30 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.selenium2.webclient [1.32 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.core.execution/1 [1.67 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.projectui [1.84.0.8.9 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.projectapi.nb [1.29 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.project.spi.intern.impl [1.28 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.progress.ui [1.58 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.print.editor [7.51 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.print [7.51 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.parsing.ui [1.39.0.1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.parsing.nb [1.29.0.8.1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.core.windows/2 [2.110 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.notifications [1.33 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.osgi [1.47 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.core.netigso [1.56 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.netbinox [1.66 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.nativeimage.api/0 [0.17 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.eclipse.mylyn.commons.net [3.17.0 3.17.0.v20150706-2057]
+	org.eclipse.mylyn.tasks.core [3.17.0 3.17.0.v20150828-2026]
+	org.eclipse.core.jobs [3.5.100 3.5.100.v20110404]
+	org.eclipse.mylyn.wikitext.core [2.6.0 2.6.0.v20150901-2143]
+	org.netbeans.modules.bugtracking [1.134 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.eclipse.equinox.common [3.6.0 3.6.0.v20110523]
+	org.eclipse.core.runtime [3.7.0 3.7.0.v20110110]
+	org.netbeans.modules.mylyn.util [1.61 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.mercurial/2 [2.1.0.42.1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.masterfs.nio2 [1.40 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.jna/2 [2.20 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.masterfs.linux [1.38 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.flexmark [1.18 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.markdown [1.13 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	com.google.guava [33.2.1 33.2.1.jre]
+	org.netbeans.modules.lsp.client/0 [1.26.0.1.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.bugtracking.commons [1.33 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.localtasks [1.50 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.localhistory [1.60 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.lexer.nbbridge/1 [1.57.0.1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.antlr4.runtime/2 [1.26.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.lexer.antlr4 [1.7.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.snakeyaml_engine/2 [2.14 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.languages.yaml [2.57 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.tomljava/3 [1.1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.languages.toml [1.7 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.languages.manifest [1.57 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.languages.hcl [1.5 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.go.lang [1.6 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.languages.go [1.5 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.languages.diff [1.58 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.keyring.fallback [1.33 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.keyring.impl [1.49 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.janitor [1.18 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.image/1 [1.73 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.core.multitabs/1 [1.37.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.bookmarks/1 [1.62 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	com.jcraft.jsch [0.1.72 0.1.72]
+	org.netbeans.modules.dlight.nativeexecution [1.64.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.dlight.terminal [1.49.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.core.multitabs.project [1.35.0.1.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.search [1.50.0.0.55 0 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.html.editor.lib/3 [3.57 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.apache.commons.logging [1.3.3 1.3.3]
+	org.netbeans.modules.html.parser/1 [1.59.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.html.validation/1 [1.56 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.antlr3.runtime [1.46.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.css.lib/2 [2.5 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.css.model [1.56 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.css.editor/1 [1.93 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.html/1 [1.86 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.html.editor/2 [2.81 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.core.output2/1 [1.67 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.css.visual/3 [3.57 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.autosave/1 [1.16 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.kit [1.58 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.autoupdate.cli [1.39 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.felix [2.40 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.core.kit [1.56 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.defaults/1 [1.56 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.macros/0 [1.56.0.1.23 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.plain/2 [1.60 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.ide.kit [1.58 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.ide.ergonomics [1.52 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.ide.dashboard/0 [0.2 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.autoupdate.pluginimporter [1.45 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.deadlock.detector [1.31 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.ide.branding/1 [1.57 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.ide.branding.kit [1.53 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.commons_net/2 [2.47.0.36 36 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.hudson [2.38 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.hudson.ui [1.36 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.hudson.tasklist [1.42 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.hudson.subversion [1.54 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.hudson.mercurial [1.54 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.hudson.git [1.43 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.html.custom [1.31 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.eclipse.jgit [6.10.0 6.10.0.202406032230-r]
+	org.eclipse.jgit.ssh.jsch [6.10.0 6.10.0.202406032230-r]
+	org.netbeans.libs.jsch.agentproxy/2 [1.9 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.git/1 [1.60 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.git [1.48.0.1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.extexecution.process.jdk9 [1.25 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.extexecution.process [1.52 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.extexecution.impl [1.50 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.mimelookup.impl/1 [1.57 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.indent.project/0 [1.47 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.editor.global.format/1 [1.40.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.apache.commons.codec [1.17.0 1.17.0]
+	org.apache.commons.commons_io [2.16 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.commons_compress/0 [0.31.0.181 181 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	libs.c.kohlschutter.junixsocket/2 [3.7 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.docker.api/0 [1.45 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.docker.ui/0 [1.25 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.docker.editor/0 [1.25 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.dlight.nativeexecution.nb [1.25 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.db.metadata.model/1 [1.36 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.db/1 [1.94.0.30 30 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.dbapi [1.59.0.30 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.derby [1.65 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.api.visual [2.73 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.db.sql.visualeditor/1 [2.57.0.30 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.db.dataview [1.58 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.db.core [1.62 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.db.sql.editor [1.62.0.30 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.db.mysql [0.53.0.2 2 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.db.drivers [1.55 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.db.kit [1.55 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.css.prep [1.55 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.eclipse.mylyn.bugzilla.core [3.17.0 3.17.0.v20150828-2026]
+	org.apache.commons.httpclient [3.1.0 3.1.0]
+	org.netbeans.modules.bugzilla [1.102 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.modules.bugtracking.bridge [1.71 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.graalsdk [1.26 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.truffleapi [1.26 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.svnClientAdapter.javahl/1 [1.49 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.jna.platform/2 [2.20 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.graaljs/2 [1.26 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.libs.freemarker/1 [2.59.0.239 239 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.core.network [1.37 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.core.nativeaccess/1 [1.56 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.core.io.ui/1 [1.55 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.netbeans.core.browser/1 [1.53.0.1 1 23-2985f1fa57ce0c1877bad0f86d5e5504d65f9286]
+	org.eclipse.mylyn.commons.xmlrpc [3.17.0 3.17.0.v20150625-2042]
+	org.eclipse.mylyn.commons.repositories.core [1.9.0 1.9.0.v20150625-2042]
+	org.eclipse.mylyn.commons.core [3.17.0 3.17.0.v20150625-2042]
+	org.eclipse.equinox.security [1.1.1 1.1.1.R37x_v20110822-1018]
+	org.eclipse.equinox.registry [3.5.200 3.5.200.v20120522-1841]
+	org.eclipse.equinox.preferences [3.4.2 3.4.2.v20120111-2020]
+	org.eclipse.equinox.app [1.3.100 1.3.100.v20110321]
+	org.eclipse.core.runtime.compatibility.auth [3.2.200 3.2.200.v20110110]
+	org.eclipse.core.net [1.2.100 1.2.100.I20110511-0800]
+	org.eclipse.core.contenttype [3.4.100 3.4.100.v20110423-0524]
+	org.apache.xmlrpc [3.1.3 3.1.3]
+	org.apache.ws.commons.util [1.0.1 1.0.1]
+	org.apache.commons.lang [2.6 2.6]
+	com.willwinder.ugs.platform.plugin.4th.axis [2.0 2.0-20241109 202411090256]
+	com.jcraft.jzlib [1.1.3 1.1.3]
+	com.googlecode.javaewah.JavaEWAH [1.2.3 1.2.3]
+	com.google.guava.failureaccess [1.0.2 1.0.2]
+	bcprov [1.77 1.77]
+INFO [org.netbeans.core.netigso.Netigso]: bundle org.apache.commons.lang3@3.14.0 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle bcutil@1.77.0 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle bcpg@1.77.0 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.mylyn.wikitext.textile.core@2.6.0.v20150901-2143 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.mylyn.wikitext.confluence.core@2.6.0.v20150901-2143 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.mylyn.wikitext.markdown.core@2.6.0.v20150901-2143 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle net.java.html@1.8.1 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle net.java.html.json@1.8.1 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle net.java.html.boot.fx@1.8.1 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle net.java.html.boot@1.8.1 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle org.netbeans.html.ko4j@1.8.1 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle net.java.html.boot.script@1.8.1 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle org.netbeans.html.presenters.spi@1.8.1 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle org.netbeans.html.xhr4j@1.8.1 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle net.java.html.geo@1.8.1 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle net.java.html.sound@1.8.1 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle bcpkix@1.77.0 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.jgit.gpg.bc@6.10.0.202406032230-r resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.jgit.lfs@6.10.0.202406032230-r resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.osgi@3.9.1.v20140110-1610 started
+INFO [org.netbeans.core.network.proxy.NetworkProxyReloader]: System network proxy resolver: Gnome
+INFO [org.netbeans.core.network.proxy.gnome.GsettingsNetworkProxy]: GSettings system proxy resolver: direct connection
+INFO [org.netbeans.core.network.proxy.NetworkProxyReloader]: System network proxy reloading succeeded.
+INFO [org.netbeans.core.network.proxy.NetworkProxyReloader]: System network proxy - mode: direct
+INFO [org.netbeans.core.network.proxy.NetworkProxyReloader]: System network proxy: fell to default (correct if direct mode went before)
+INFO [org.netbeans.ui.metrics.laf]: USG_LOOK_AND_FEEL
+WARNING [org.openide.filesystems.Ordering]: Not all children in Menu/Window/ marked with the position attribute: [com-willwinder-ugs-platform-plugin-th-axis-Top_ComponentTopComponent.shadow], but some are: [org-netbeans-modules-project-ui-logical-tab-action.shadow, org-netbeans-modules-project-ui-physical-tab-action.shadow, org-netbeans-modules-favorites-View.shadow, org-netbeans-core-ide-ServicesTabAction.shadow, org-netbeans-modules-navigator-ShowNavigatorAction.shadow, org-netbeans-modules-tasks-ui-DashboardTopComponent.shadow, org-netbeans-core-io-ui-IOWindowAction.shadow, SwitchToRecentDocumentAction.shadow, Web, Tools, org-netbeans-modules-dashboard-ShowDashboardAction.shadow, Separator3.instance, ConfigureWindow, org-netbeans-core-windows-actions-ResetWindowsAction.shadow, Separator4.instance, CloseWindowAction.shadow, CloseAllDocumentsAction.shadow, CloseAllButThisAction.shadow, GroupsMenuAction.shadow, DocumentsAction.shadow]
+Diagnostic information
+Input arguments:
+	-Djdk.home=/usr/lib/jvm/java-17-openjdk-amd64
+	-Dnetbeans.default_userdir_root=/home/camren-chraplak/.netbeans
+	-Dnetbeans.running.environment=gnome
+	-Dnetbeans.dirs=/usr/lib/apache-netbeans/nb:/usr/lib/apache-netbeans/ergonomics:/usr/lib/apache-netbeans/ide:/usr/lib/apache-netbeans/extide:/usr/lib/apache-netbeans/java:/usr/lib/apache-netbeans/apisupport:/usr/lib/apache-netbeans/webcommon:/usr/lib/apache-netbeans/websvccommon:/usr/lib/apache-netbeans/enterprise:/usr/lib/apache-netbeans/mobility:/usr/lib/apache-netbeans/profiler:/usr/lib/apache-netbeans/python:/usr/lib/apache-netbeans/php:/usr/lib/apache-netbeans/identity:/usr/lib/apache-netbeans/harness:/usr/lib/apache-netbeans/cnd:/usr/lib/apache-netbeans/cndext:/usr/lib/apache-netbeans/cpplite:/usr/lib/apache-netbeans/dlight:/usr/lib/apache-netbeans/groovy:/usr/lib/apache-netbeans/extra:/usr/lib/apache-netbeans/javacard:/usr/lib/apache-netbeans/javafx:/usr/lib/apache-netbeans/rust::/media/Files/WPI/MQP/UGS/Universal-G-Code-Sender-2.1.9/ugs-platform/ugs-platform-plugin-4th-axis/target/netbeans_clusters/ugsplatform
+	-Dnetbeans.home=/usr/lib/apache-netbeans/platform
+	-Dnetbeans.importclass=org.netbeans.upgrade.AutoUpgrade
+	-XX:+UseStringDeduplication
+	-Xss2m
+	-Dapple.laf.useScreenMenuBar=true
+	-Dapple.awt.application.appearance=system
+	-Dsun.java2d.noddraw=true
+	-Dsun.java2d.dpiaware=true
+	-Dplugin.manager.check.updates=false
+	-Dnetbeans.extbrowser.manual_chrome_plugin_install=yes
+	--enable-native-access=ALL-UNNAMED
+	--add-opens=java.base/java.net=ALL-UNNAMED
+	--add-opens=java.base/java.lang.ref=ALL-UNNAMED
+	--add-opens=java.base/java.lang=ALL-UNNAMED
+	--add-opens=java.base/java.security=ALL-UNNAMED
+	--add-opens=java.base/java.util=ALL-UNNAMED
+	--add-opens=java.base/java.nio=ALL-UNNAMED
+	--add-exports=java.base/sun.reflect.annotation=ALL-UNNAMED
+	--add-opens=java.prefs/java.util.prefs=ALL-UNNAMED
+	--add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED
+	--add-opens=java.desktop/javax.swing.text=ALL-UNNAMED
+	--add-opens=java.desktop/javax.swing=ALL-UNNAMED
+	--add-opens=java.desktop/java.awt=ALL-UNNAMED
+	--add-opens=java.desktop/java.awt.event=ALL-UNNAMED
+	--add-opens=java.desktop/sun.awt.X11=ALL-UNNAMED
+	--add-opens=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED
+	--add-opens=java.desktop/com.sun.java.swing.plaf.gtk=ALL-UNNAMED
+	--add-opens=java.desktop/com.sun.java.swing.plaf.windows=ALL-UNNAMED
+	--add-opens=java.desktop/com.apple.laf=ALL-UNNAMED
+	--add-opens=java.desktop/sun.awt.shell=ALL-UNNAMED
+	--add-opens=java.desktop/sun.awt.im=ALL-UNNAMED
+	--add-exports=java.desktop/sun.awt=ALL-UNNAMED
+	--add-exports=java.desktop/java.awt.peer=ALL-UNNAMED
+	--add-exports=java.desktop/com.sun.beans.editors=ALL-UNNAMED
+	--add-exports=java.desktop/sun.swing=ALL-UNNAMED
+	--add-exports=java.desktop/sun.awt.im=ALL-UNNAMED
+	--add-exports=java.desktop/com.sun.java.swing.plaf.motif=ALL-UNNAMED
+	--add-exports=java.desktop/com.apple.eio=ALL-UNNAMED
+	--add-opens=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED
+	--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED
+	--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED
+	--add-opens=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED
+	--add-opens=jdk.compiler/com.sun.tools.javac.jvm=ALL-UNNAMED
+	--add-opens=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED
+	--add-opens=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED
+	--add-opens=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED
+	--add-opens=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED
+	--add-opens=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED
+	--add-opens=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED
+	--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED
+	--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED
+	--add-exports=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED
+	--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED
+	--add-exports=jdk.compiler/com.sun.tools.javac.jvm=ALL-UNNAMED
+	--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED
+	--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED
+	--add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED
+	--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED
+	--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED
+	--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED
+	--add-modules=jdk.jshell
+	--add-opens=jdk.jshell/jdk.jshell=ALL-UNNAMED
+	--add-exports=jdk.jshell/jdk.internal.jshell.debug=ALL-UNNAMED
+	--add-exports=jdk.jdeps/com.sun.tools.classfile=ALL-UNNAMED
+	--add-exports=jdk.jdeps/com.sun.tools.javap=ALL-UNNAMED
+	--add-exports=jdk.internal.jvmstat/sun.jvmstat.monitor=ALL-UNNAMED
+	--add-exports=jdk.internal.opt/jdk.internal.opt=ALL-UNNAMED
+	--add-exports=java.management/sun.management=ALL-UNNAMED
+	-XX:+IgnoreUnrecognizedVMOptions
+	-Dnetbeans.logger.console=true
+	-ea
+	-XX:+HeapDumpOnOutOfMemoryError
+	-XX:HeapDumpPath=/media/Files/WPI/MQP/UGS/Universal-G-Code-Sender-2.1.9/ugs-platform/ugs-platform-plugin-4th-axis/target/userdir/var/log/heapdump.hprof
+	-Djava.security.manager=allow
+Compiler: HotSpot 64-Bit Tiered Compilers
+Heap memory usage: initial 246.0MB maximum 3930.0MB
+Non heap memory usage: initial 7.3MB maximum -1b
+Garbage collector: G1 Young Generation (Collections=13 Total time spent=0s)
+Garbage collector: G1 Old Generation (Collections=0 Total time spent=0s)
+Classes: loaded=8210 total loaded=8210 unloaded 0
+INFO [org.netbeans.core.ui.warmup.DiagnosticTask]: Total memory 16,477,749,248
+INFO [null]: Total physical memory 16,477,749,248
+INFO [org.netbeans.ui.indexing]: Indexing started, time from last indexing 0 ms.
+INFO [org.netbeans.ui.indexing]: Indexing finished, indexing took 1 ms.
+INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.osgi@3.9.1.v20140110-1610 256
+INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.osgi@3.9.1.v20140110-1610 stopped
+INFO [null]: Last record repeated again.
