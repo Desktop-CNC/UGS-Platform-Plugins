@@ -1,16 +1,16 @@
 -------------------------------------------------------------------------------
->Log Session: Friday, November 8, 2024 at 9:56:09 PM Eastern Standard Time
+>Log Session: Friday, November 29, 2024 at 3:34:49 PM Eastern Standard Time
 >System Info: 
   Product Version         = Apache NetBeans IDE 23
   Operating System        = Linux version 6.9.3-76060903-generic running on amd64
-  Java; VM; Vendor        = 17.0.12; OpenJDK 64-Bit Server VM 17.0.12+7-Ubuntu-1ubuntu224.04; Ubuntu
-  Runtime                 = OpenJDK Runtime Environment 17.0.12+7-Ubuntu-1ubuntu224.04
+  Java; VM; Vendor        = 17.0.13; OpenJDK 64-Bit Server VM 17.0.13+11-Ubuntu-2ubuntu124.04; Ubuntu
+  Runtime                 = OpenJDK Runtime Environment 17.0.13+11-Ubuntu-2ubuntu124.04
   Java Home               = /usr/lib/jvm/java-17-openjdk-amd64
   System Locale; Encoding = en_US (nb); UTF-8
   Home Directory          = /home/camren-chraplak
-  Current Directory       = /media/Files/WPI/MQP/UGS/Universal-G-Code-Sender-2.1.9/ugs-platform/ugs-platform-plugin-4th-axis
-  User Directory          = /media/Files/WPI/MQP/UGS/Universal-G-Code-Sender-2.1.9/ugs-platform/ugs-platform-plugin-4th-axis/target/userdir
-  Cache Directory         = /media/Files/WPI/MQP/UGS/Universal-G-Code-Sender-2.1.9/ugs-platform/ugs-platform-plugin-4th-axis/target/userdir/var/cache
+  Current Directory       = /media/Files/WPI/MQP/UGS/Universal-G-Code-Sender-2.1.9/ugs-platform/ugs-platform-plugin-toolchanger
+  User Directory          = /media/Files/WPI/MQP/UGS/Universal-G-Code-Sender-2.1.9/ugs-platform/ugs-platform-plugin-toolchanger/target/userdir
+  Cache Directory         = /media/Files/WPI/MQP/UGS/Universal-G-Code-Sender-2.1.9/ugs-platform/ugs-platform-plugin-toolchanger/target/userdir/var/cache
   Installation            = /usr/lib/apache-netbeans/nb
                             /usr/lib/apache-netbeans/ergonomics
                             /usr/lib/apache-netbeans/ide
@@ -26,13 +26,13 @@
                             /usr/lib/apache-netbeans/cpplite
                             /usr/lib/apache-netbeans/groovy
                             /usr/lib/apache-netbeans/javafx
-                            /media/Files/WPI/MQP/UGS/Universal-G-Code-Sender-2.1.9/ugs-platform/ugs-platform-plugin-4th-axis/target/netbeans_clusters/ugsplatform
+                            /media/Files/WPI/MQP/UGS/Universal-G-Code-Sender-2.1.9/ugs-platform/ugs-platform-plugin-toolchanger/target/netbeans_clusters/ugsplatform
                             /usr/lib/apache-netbeans/platform
   Boot & Ext. Classpath   = 
   Application Classpath   = /usr/lib/apache-netbeans/platform/lib/boot.jar:/usr/lib/apache-netbeans/platform/lib/org-openide-modules.jar:/usr/lib/apache-netbeans/platform/lib/org-openide-util.jar:/usr/lib/apache-netbeans/platform/lib/org-openide-util-lookup.jar:/usr/lib/apache-netbeans/platform/lib/org-openide-util-ui.jar
   Startup Classpath       = /usr/lib/apache-netbeans/platform/core/core.jar:/usr/lib/apache-netbeans/platform/core/org-openide-filesystems-compat8.jar:/usr/lib/apache-netbeans/platform/core/core-base.jar:/usr/lib/apache-netbeans/platform/core/org-netbeans-libs-asm.jar:/usr/lib/apache-netbeans/platform/core/asm-9.7.jar:/usr/lib/apache-netbeans/platform/core/asm-commons-9.7.jar:/usr/lib/apache-netbeans/platform/core/org-openide-filesystems.jar:/usr/lib/apache-netbeans/platform/core/asm-tree-9.7.jar:/usr/lib/apache-netbeans/nb/core/org-netbeans-upgrader.jar:/usr/lib/apache-netbeans/nb/core/locale/core_nb.jar
 -------------------------------------------------------------------------------
-WARNING [org.netbeans.modules.netbinox]: Cannot compute install area. No common prefix between /usr/lib/apache-netbeans/ and /media/Files/WPI/MQP/UGS/Universal-G-Code-Sender-2.1.9/ugs-platform/ugs-platform-plugin-4th-axis/target/netbeans_clusters/ugsplatform
+WARNING [org.netbeans.modules.netbinox]: Cannot compute install area. No common prefix between /usr/lib/apache-netbeans/ and /media/Files/WPI/MQP/UGS/Universal-G-Code-Sender-2.1.9/ugs-platform/ugs-platform-plugin-toolchanger/target/netbeans_clusters/ugsplatform
 INFO [org.netbeans.modules.netbinox]: Install area set to file:/usr/lib/apache-netbeans/
 WARNING [org.netbeans.core.modules]: the modules [org.netbeans.modules.xml.text] use org.netbeans.modules.editor.deprecated.pre65formatting which is deprecated.
 WARNING [org.netbeans.core.modules]: the modules [org.netbeans.modules.ide.kit, org.netbeans.modules.xml.text] use org.netbeans.modules.editor.structure which is deprecated.
@@ -377,30 +377,30 @@ INFO [org.netbeans.core.startup.NbEvents]: Turning on modules:
 	org.apache.xmlrpc [3.1.3 3.1.3]
 	org.apache.ws.commons.util [1.0.1 1.0.1]
 	org.apache.commons.lang [2.6 2.6]
-	com.willwinder.ugs.platform.plugin.4th.axis [2.0 2.0-20241109 202411090256]
 	com.jcraft.jzlib [1.1.3 1.1.3]
 	com.googlecode.javaewah.JavaEWAH [1.2.3 1.2.3]
 	com.google.guava.failureaccess [1.0.2 1.0.2]
+	com.cchraplak.ugs.platform.plugin.toolchanger [0.1 0.1 202411292026]
 	bcprov [1.77 1.77]
-INFO [org.netbeans.core.netigso.Netigso]: bundle org.apache.commons.lang3@3.14.0 resolved
 INFO [org.netbeans.core.netigso.Netigso]: bundle bcutil@1.77.0 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle bcpkix@1.77.0 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle org.apache.commons.lang3@3.14.0 resolved
 INFO [org.netbeans.core.netigso.Netigso]: bundle bcpg@1.77.0 resolved
-INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.mylyn.wikitext.textile.core@2.6.0.v20150901-2143 resolved
-INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.mylyn.wikitext.confluence.core@2.6.0.v20150901-2143 resolved
-INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.mylyn.wikitext.markdown.core@2.6.0.v20150901-2143 resolved
-INFO [org.netbeans.core.netigso.Netigso]: bundle net.java.html@1.8.1 resolved
 INFO [org.netbeans.core.netigso.Netigso]: bundle net.java.html.json@1.8.1 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle org.netbeans.html.ko4j@1.8.1 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle net.java.html@1.8.1 resolved
 INFO [org.netbeans.core.netigso.Netigso]: bundle net.java.html.boot.fx@1.8.1 resolved
 INFO [org.netbeans.core.netigso.Netigso]: bundle net.java.html.boot@1.8.1 resolved
-INFO [org.netbeans.core.netigso.Netigso]: bundle org.netbeans.html.ko4j@1.8.1 resolved
-INFO [org.netbeans.core.netigso.Netigso]: bundle net.java.html.boot.script@1.8.1 resolved
-INFO [org.netbeans.core.netigso.Netigso]: bundle org.netbeans.html.presenters.spi@1.8.1 resolved
-INFO [org.netbeans.core.netigso.Netigso]: bundle org.netbeans.html.xhr4j@1.8.1 resolved
 INFO [org.netbeans.core.netigso.Netigso]: bundle net.java.html.geo@1.8.1 resolved
 INFO [org.netbeans.core.netigso.Netigso]: bundle net.java.html.sound@1.8.1 resolved
-INFO [org.netbeans.core.netigso.Netigso]: bundle bcpkix@1.77.0 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle org.netbeans.html.xhr4j@1.8.1 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle org.netbeans.html.presenters.spi@1.8.1 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle net.java.html.boot.script@1.8.1 resolved
 INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.jgit.gpg.bc@6.10.0.202406032230-r resolved
 INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.jgit.lfs@6.10.0.202406032230-r resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.mylyn.wikitext.confluence.core@2.6.0.v20150901-2143 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.mylyn.wikitext.textile.core@2.6.0.v20150901-2143 resolved
+INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.mylyn.wikitext.markdown.core@2.6.0.v20150901-2143 resolved
 INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.osgi@3.9.1.v20140110-1610 started
 INFO [org.netbeans.core.network.proxy.NetworkProxyReloader]: System network proxy resolver: Gnome
 INFO [org.netbeans.core.network.proxy.gnome.GsettingsNetworkProxy]: GSettings system proxy resolver: direct connection
@@ -408,13 +408,13 @@ INFO [org.netbeans.core.network.proxy.NetworkProxyReloader]: System network prox
 INFO [org.netbeans.core.network.proxy.NetworkProxyReloader]: System network proxy - mode: direct
 INFO [org.netbeans.core.network.proxy.NetworkProxyReloader]: System network proxy: fell to default (correct if direct mode went before)
 INFO [org.netbeans.ui.metrics.laf]: USG_LOOK_AND_FEEL
-WARNING [org.openide.filesystems.Ordering]: Not all children in Menu/Window/ marked with the position attribute: [com-willwinder-ugs-platform-plugin-th-axis-Top_ComponentTopComponent.shadow], but some are: [org-netbeans-modules-project-ui-logical-tab-action.shadow, org-netbeans-modules-project-ui-physical-tab-action.shadow, org-netbeans-modules-favorites-View.shadow, org-netbeans-core-ide-ServicesTabAction.shadow, org-netbeans-modules-navigator-ShowNavigatorAction.shadow, org-netbeans-modules-tasks-ui-DashboardTopComponent.shadow, org-netbeans-core-io-ui-IOWindowAction.shadow, SwitchToRecentDocumentAction.shadow, Web, Tools, org-netbeans-modules-dashboard-ShowDashboardAction.shadow, Separator3.instance, ConfigureWindow, org-netbeans-core-windows-actions-ResetWindowsAction.shadow, Separator4.instance, CloseWindowAction.shadow, CloseAllDocumentsAction.shadow, CloseAllButThisAction.shadow, GroupsMenuAction.shadow, DocumentsAction.shadow]
+WARNING [org.openide.filesystems.Ordering]: Not all children in Menu/Window/ marked with the position attribute: [com-cchraplak-ugs-platform-plugin-toolchanger-WindowTopComponent.shadow], but some are: [org-netbeans-modules-project-ui-logical-tab-action.shadow, org-netbeans-modules-project-ui-physical-tab-action.shadow, org-netbeans-modules-favorites-View.shadow, org-netbeans-core-ide-ServicesTabAction.shadow, org-netbeans-modules-navigator-ShowNavigatorAction.shadow, org-netbeans-modules-tasks-ui-DashboardTopComponent.shadow, org-netbeans-core-io-ui-IOWindowAction.shadow, SwitchToRecentDocumentAction.shadow, Web, Tools, org-netbeans-modules-dashboard-ShowDashboardAction.shadow, Separator3.instance, ConfigureWindow, org-netbeans-core-windows-actions-ResetWindowsAction.shadow, Separator4.instance, CloseWindowAction.shadow, CloseAllDocumentsAction.shadow, CloseAllButThisAction.shadow, GroupsMenuAction.shadow, DocumentsAction.shadow]
 Diagnostic information
 Input arguments:
 	-Djdk.home=/usr/lib/jvm/java-17-openjdk-amd64
 	-Dnetbeans.default_userdir_root=/home/camren-chraplak/.netbeans
 	-Dnetbeans.running.environment=gnome
-	-Dnetbeans.dirs=/usr/lib/apache-netbeans/nb:/usr/lib/apache-netbeans/ergonomics:/usr/lib/apache-netbeans/ide:/usr/lib/apache-netbeans/extide:/usr/lib/apache-netbeans/java:/usr/lib/apache-netbeans/apisupport:/usr/lib/apache-netbeans/webcommon:/usr/lib/apache-netbeans/websvccommon:/usr/lib/apache-netbeans/enterprise:/usr/lib/apache-netbeans/mobility:/usr/lib/apache-netbeans/profiler:/usr/lib/apache-netbeans/python:/usr/lib/apache-netbeans/php:/usr/lib/apache-netbeans/identity:/usr/lib/apache-netbeans/harness:/usr/lib/apache-netbeans/cnd:/usr/lib/apache-netbeans/cndext:/usr/lib/apache-netbeans/cpplite:/usr/lib/apache-netbeans/dlight:/usr/lib/apache-netbeans/groovy:/usr/lib/apache-netbeans/extra:/usr/lib/apache-netbeans/javacard:/usr/lib/apache-netbeans/javafx:/usr/lib/apache-netbeans/rust::/media/Files/WPI/MQP/UGS/Universal-G-Code-Sender-2.1.9/ugs-platform/ugs-platform-plugin-4th-axis/target/netbeans_clusters/ugsplatform
+	-Dnetbeans.dirs=/usr/lib/apache-netbeans/nb:/usr/lib/apache-netbeans/ergonomics:/usr/lib/apache-netbeans/ide:/usr/lib/apache-netbeans/extide:/usr/lib/apache-netbeans/java:/usr/lib/apache-netbeans/apisupport:/usr/lib/apache-netbeans/webcommon:/usr/lib/apache-netbeans/websvccommon:/usr/lib/apache-netbeans/enterprise:/usr/lib/apache-netbeans/mobility:/usr/lib/apache-netbeans/profiler:/usr/lib/apache-netbeans/python:/usr/lib/apache-netbeans/php:/usr/lib/apache-netbeans/identity:/usr/lib/apache-netbeans/harness:/usr/lib/apache-netbeans/cnd:/usr/lib/apache-netbeans/cndext:/usr/lib/apache-netbeans/cpplite:/usr/lib/apache-netbeans/dlight:/usr/lib/apache-netbeans/groovy:/usr/lib/apache-netbeans/extra:/usr/lib/apache-netbeans/javacard:/usr/lib/apache-netbeans/javafx:/usr/lib/apache-netbeans/rust::/media/Files/WPI/MQP/UGS/Universal-G-Code-Sender-2.1.9/ugs-platform/ugs-platform-plugin-toolchanger/target/netbeans_clusters/ugsplatform
 	-Dnetbeans.home=/usr/lib/apache-netbeans/platform
 	-Dnetbeans.importclass=org.netbeans.upgrade.AutoUpgrade
 	-XX:+UseStringDeduplication
@@ -487,16 +487,16 @@ Input arguments:
 	-Dnetbeans.logger.console=true
 	-ea
 	-XX:+HeapDumpOnOutOfMemoryError
-	-XX:HeapDumpPath=/media/Files/WPI/MQP/UGS/Universal-G-Code-Sender-2.1.9/ugs-platform/ugs-platform-plugin-4th-axis/target/userdir/var/log/heapdump.hprof
+	-XX:HeapDumpPath=/media/Files/WPI/MQP/UGS/Universal-G-Code-Sender-2.1.9/ugs-platform/ugs-platform-plugin-toolchanger/target/userdir/var/log/heapdump.hprof
 	-Djava.security.manager=allow
 Compiler: HotSpot 64-Bit Tiered Compilers
 Heap memory usage: initial 246.0MB maximum 3930.0MB
 Non heap memory usage: initial 7.3MB maximum -1b
-Garbage collector: G1 Young Generation (Collections=13 Total time spent=0s)
+Garbage collector: G1 Young Generation (Collections=14 Total time spent=0s)
 Garbage collector: G1 Old Generation (Collections=0 Total time spent=0s)
-Classes: loaded=8210 total loaded=8210 unloaded 0
-INFO [org.netbeans.core.ui.warmup.DiagnosticTask]: Total memory 16,477,749,248
-INFO [null]: Total physical memory 16,477,749,248
+Classes: loaded=8342 total loaded=8342 unloaded 0
+INFO [org.netbeans.core.ui.warmup.DiagnosticTask]: Total memory 16,477,777,920
+INFO [null]: Total physical memory 16,477,777,920
 INFO [org.netbeans.ui.indexing]: Indexing started, time from last indexing 0 ms.
 INFO [org.netbeans.ui.indexing]: Indexing finished, indexing took 1 ms.
 INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.osgi@3.9.1.v20140110-1610 256

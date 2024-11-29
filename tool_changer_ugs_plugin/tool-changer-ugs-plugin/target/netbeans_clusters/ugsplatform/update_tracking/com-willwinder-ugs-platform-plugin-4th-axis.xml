@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><module codename="com.willwinder.ugs.platform.plugin.4th.axis">
-    <module_version install_time="1731120963662" last="true" origin="installer" specification_version="2.0">
-        <file crc="3426395633" name="config/Modules/com-willwinder-ugs-platform-plugin-4th-axis.xml"/>
-        <file crc="430930464" name="modules/com-willwinder-ugs-platform-plugin-4th-axis.jar"/>
-        <file crc="3390010548" name="update_tracking/com-willwinder-ugs-platform-plugin-4th-axis.xml"/>
-    </module_version>
-</module>
