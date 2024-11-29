@@ -11,6 +11,7 @@
   <artifactId>ugs-platform-plugin-toolchanger</artifactId>
   <version>0.1</version>
   <packaging>nbm</packaging>
+  <description>Custom tool changer for Desktop CNC Mill</description>
   <licenses>
     <license>
       <name>GNU General Public License, version 3 (GPL-3.0)</name>

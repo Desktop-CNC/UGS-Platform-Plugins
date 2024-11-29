@@ -10,6 +10,7 @@
     <artifactId>ugs-platform-plugin-toolchanger</artifactId>
     <version>0.1</version>
     <packaging>nbm</packaging>
+    <description>Custom tool changer for Desktop CNC Mill</description>
     <build>
         <plugins>
             <plugin>

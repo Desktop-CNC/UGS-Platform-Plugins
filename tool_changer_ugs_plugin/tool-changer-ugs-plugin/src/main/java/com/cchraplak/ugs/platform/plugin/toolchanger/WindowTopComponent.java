@@ -38,15 +38,15 @@ import org.openide.util.NbBundle.Messages;
 )
 @TopComponent.Registration(mode = "output", openAtStartup = false)
 @ActionID(category = "Window", id = "com.cchraplak.ugs.platform.plugin.toolchanger.WindowTopComponent")
-@ActionReference(path = "Menu/Window" /*, position = 333 */)
+@ActionReference(path = "Menu/Window/Plugins" /*, position = 333 */)
 @TopComponent.OpenActionRegistration(
         displayName = "#CTL_WindowAction",
         preferredID = "WindowTopComponent"
 )
 @Messages({
-    "CTL_WindowAction=Window",
-    "CTL_WindowTopComponent=Window Window",
-    "HINT_WindowTopComponent=This is a Window window"
+    "CTL_WindowAction=Tool Changer",
+    "CTL_WindowTopComponent=Tool Changer",
+    "HINT_WindowTopComponent=Tool changer window"
 })
 public final class WindowTopComponent extends TopComponent {
 

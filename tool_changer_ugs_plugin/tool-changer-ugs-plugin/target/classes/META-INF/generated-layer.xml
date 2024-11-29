@@ -36,10 +36,12 @@
     </folder>
     <folder name="Menu">
         <folder name="Window">
-            <file name="com-cchraplak-ugs-platform-plugin-toolchanger-WindowTopComponent.shadow">
-                <!--com.cchraplak.ugs.platform.plugin.toolchanger.WindowTopComponent-->
-                <attr name="originalFile" stringvalue="Actions/Window/com-cchraplak-ugs-platform-plugin-toolchanger-WindowTopComponent.instance"/>
-            </file>
+            <folder name="Plugins">
+                <file name="com-cchraplak-ugs-platform-plugin-toolchanger-WindowTopComponent.shadow">
+                    <!--com.cchraplak.ugs.platform.plugin.toolchanger.WindowTopComponent-->
+                    <attr name="originalFile" stringvalue="Actions/Window/com-cchraplak-ugs-platform-plugin-toolchanger-WindowTopComponent.instance"/>
+                </file>
+            </folder>
         </folder>
     </folder>
     <folder name="xml">
