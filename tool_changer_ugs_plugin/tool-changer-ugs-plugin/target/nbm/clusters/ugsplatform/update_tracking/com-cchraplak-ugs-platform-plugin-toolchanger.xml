@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><module codename="com.cchraplak.ugs.platform.plugin.toolchanger">
-    <module_version install_time="1732918030964" last="true" origin="installer" specification_version="0.1">
+    <module_version install_time="1739035971725" last="true" origin="installer" specification_version="0.1">
         <file crc="1204700906" name="config/Modules/com-cchraplak-ugs-platform-plugin-toolchanger.xml"/>
-        <file crc="1104287293" name="modules/com-cchraplak-ugs-platform-plugin-toolchanger.jar"/>
-        <file crc="2297739583" name="update_tracking/com-cchraplak-ugs-platform-plugin-toolchanger.xml"/>
+        <file crc="1956435382" name="modules/com-cchraplak-ugs-platform-plugin-toolchanger.jar"/>
+        <file crc="3396707016" name="update_tracking/com-cchraplak-ugs-platform-plugin-toolchanger.xml"/>
     </module_version>
 </module>

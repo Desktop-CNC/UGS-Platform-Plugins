@@ -2,21 +2,38 @@
 <filesystem>
     <folder name="Windows2">
         <folder name="Components">
-            <file name="WindowTopComponent.settings">
-                <!--com.cchraplak.ugs.platform.plugin.toolchanger.WindowTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+            <file name="ToolTableTopComponent.settings">
+                <!--com.cchraplak.ugs.platform.plugin.toolchanger.ToolTableTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
 <settings version="1.0">
-  <instance class="com.cchraplak.ugs.platform.plugin.toolchanger.WindowTopComponent"/>
+  <instance class="com.cchraplak.ugs.platform.plugin.toolchanger.ToolTableTopComponent"/>
+</settings>
+]]></file>
+            <file name="MyModuleTopComponent.settings">
+                <!--com.cchraplak.ugs.platform.plugin.toolchanger.testClass--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="com.cchraplak.ugs.platform.plugin.toolchanger.testClass"/>
 </settings>
 ]]></file>
         </folder>
         <folder name="Modes">
             <folder name="output">
-                <file name="WindowTopComponent.wstcref">
-                    <!--com.cchraplak.ugs.platform.plugin.toolchanger.WindowTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+                <file name="ToolTableTopComponent.wstcref">
+                    <!--com.cchraplak.ugs.platform.plugin.toolchanger.ToolTableTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
 <tc-ref version="2.0">
-  <tc-id id="WindowTopComponent"/>
+  <tc-id id="ToolTableTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+            </folder>
+            <folder name="bottom_left">
+                <file name="MyModuleTopComponent.wstcref">
+                    <!--com.cchraplak.ugs.platform.plugin.toolchanger.testClass--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="MyModuleTopComponent"/>
   <state opened="false"/>
 </tc-ref>
 ]]></file>
@@ -25,21 +42,32 @@
     </folder>
     <folder name="Actions">
         <folder name="Window">
-            <file name="com-cchraplak-ugs-platform-plugin-toolchanger-WindowTopComponent.instance">
-                <!--com.cchraplak.ugs.platform.plugin.toolchanger.WindowTopComponent-->
+            <file name="com-cchraplak-ugs-platform-plugin-toolchanger-ToolTableTopComponent.instance">
+                <!--com.cchraplak.ugs.platform.plugin.toolchanger.ToolTableTopComponent-->
                 <attr methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
-                <attr name="component" newvalue="com.cchraplak.ugs.platform.plugin.toolchanger.WindowTopComponent"/>
-                <attr name="preferredID" stringvalue="WindowTopComponent"/>
-                <attr bundlevalue="com.cchraplak.ugs.platform.plugin.toolchanger.Bundle#CTL_WindowAction" name="displayName"/>
+                <attr name="component" newvalue="com.cchraplak.ugs.platform.plugin.toolchanger.ToolTableTopComponent"/>
+                <attr name="preferredID" stringvalue="ToolTableTopComponent"/>
+                <attr bundlevalue="com.cchraplak.ugs.platform.plugin.toolchanger.Bundle#CTL_ToolTableAction" name="displayName"/>
+            </file>
+            <file name="com-willwinder-ugs-nbp-mymodule-MyModuleTopComponent.instance">
+                <!--com.cchraplak.ugs.platform.plugin.toolchanger.testClass-->
+                <attr methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="com.cchraplak.ugs.platform.plugin.toolchanger.testClass"/>
+                <attr name="preferredID" stringvalue="MyModuleTopComponent"/>
+                <attr name="displayName" stringvalue="My module"/>
             </file>
         </folder>
     </folder>
     <folder name="Menu">
         <folder name="Window">
+            <file name="com-cchraplak-ugs-platform-plugin-toolchanger-ToolTableTopComponent.shadow">
+                <!--com.cchraplak.ugs.platform.plugin.toolchanger.ToolTableTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/com-cchraplak-ugs-platform-plugin-toolchanger-ToolTableTopComponent.instance"/>
+            </file>
             <folder name="Plugins">
-                <file name="com-cchraplak-ugs-platform-plugin-toolchanger-WindowTopComponent.shadow">
-                    <!--com.cchraplak.ugs.platform.plugin.toolchanger.WindowTopComponent-->
-                    <attr name="originalFile" stringvalue="Actions/Window/com-cchraplak-ugs-platform-plugin-toolchanger-WindowTopComponent.instance"/>
+                <file name="com-willwinder-ugs-nbp-mymodule-MyModuleTopComponent.shadow">
+                    <!--com.cchraplak.ugs.platform.plugin.toolchanger.testClass-->
+                    <attr name="originalFile" stringvalue="Actions/Window/com-willwinder-ugs-nbp-mymodule-MyModuleTopComponent.instance"/>
                 </file>
             </folder>
         </folder>
@@ -47,9 +75,9 @@
     <folder name="xml">
         <folder name="entities">
             <folder name="com_cchraplak_ugs_platform_plugin_toolchanger">
-                <file name="Window" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
-                    <!--com.cchraplak.ugs.platform.plugin.toolchanger.WindowTopComponent-->
-                    <attr name="hint.originalPublicID" stringvalue="-//com.cchraplak.ugs.platform.plugin.toolchanger//Window//EN"/>
+                <file name="ToolTable" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--com.cchraplak.ugs.platform.plugin.toolchanger.ToolTableTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//com.cchraplak.ugs.platform.plugin.toolchanger//ToolTable//EN"/>
                 </file>
             </folder>
         </folder>
@@ -60,9 +88,9 @@
                         <folder name="platform">
                             <folder name="plugin">
                                 <folder name="toolchanger">
-                                    <file name="WindowTopComponent">
-                                        <!--com.cchraplak.ugs.platform.plugin.toolchanger.WindowTopComponent-->
-                                        <attr name="settings.providerPath" stringvalue="xml/lookups//com_cchraplak_ugs_platform_plugin_toolchanger/Window.instance"/>
+                                    <file name="ToolTableTopComponent">
+                                        <!--com.cchraplak.ugs.platform.plugin.toolchanger.ToolTableTopComponent-->
+                                        <attr name="settings.providerPath" stringvalue="xml/lookups//com_cchraplak_ugs_platform_plugin_toolchanger/ToolTable.instance"/>
                                     </file>
                                 </folder>
                             </folder>
@@ -73,12 +101,12 @@
         </folder>
         <folder name="lookups">
             <folder name="com_cchraplak_ugs_platform_plugin_toolchanger">
-                <file name="Window.instance">
-                    <!--com.cchraplak.ugs.platform.plugin.toolchanger.WindowTopComponent-->
+                <file name="ToolTable.instance">
+                    <!--com.cchraplak.ugs.platform.plugin.toolchanger.ToolTableTopComponent-->
                     <attr methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
                     <attr methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
-                    <attr name="settings.instanceClass" stringvalue="com.cchraplak.ugs.platform.plugin.toolchanger.WindowTopComponent"/>
-                    <attr name="settings.instanceOf" stringvalue="com.cchraplak.ugs.platform.plugin.toolchanger.WindowTopComponent"/>
+                    <attr name="settings.instanceClass" stringvalue="com.cchraplak.ugs.platform.plugin.toolchanger.ToolTableTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="com.cchraplak.ugs.platform.plugin.toolchanger.ToolTableTopComponent"/>
                     <attr boolvalue="true" name="xmlproperties.preventStoring"/>
                 </file>
             </folder>
