@@ -39,20 +39,20 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace pref="19" max="32767" attributes="0"/>
-                      <Component id="randomPos" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" pref="627" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="removeTool" min="-2" max="-2" attributes="0"/>
-                          <Component id="loadTool" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="resetTable" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="randomPos" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="loadTool" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="removeTool" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -60,22 +60,17 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                      <Component id="randomPos" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="loadTool" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="removeTool" min="-2" max="-2" attributes="0"/>
-                  </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="resetTable" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="randomPos" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="loadTool" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="removeTool" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="84" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="477" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -88,41 +83,48 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="toolTable">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="2">
-                <Column editable="false" title="ID" type="java.lang.Integer"/>
-                <Column editable="true" title="Name" type="java.lang.String">
-                  <Data value="Test1"/>
-                  <Data value="Test2"/>
-                </Column>
-                <Column editable="true" title="Description" type="java.lang.String">
-                  <Data value="asdf"/>
-                  <Data value="null"/>
-                </Column>
-                <Column editable="false" title="Loaded?" type="java.lang.Boolean"/>
+              <Table columnCount="10" rowCount="0">
+                <Column editable="true" title="ID" type="java.lang.Integer"/>
+                <Column editable="true" title="Name" type="java.lang.String"/>
+                <Column editable="true" title="Description" type="java.lang.String"/>
+                <Column editable="true" title="Pocket" type="java.lang.Integer"/>
+                <Column editable="true" title="Current" type="java.lang.Boolean"/>
+                <Column editable="true" title="X Offset" type="java.lang.Float"/>
+                <Column editable="true" title="Y Offset" type="java.lang.Float"/>
+                <Column editable="true" title="Z Offset" type="java.lang.Float"/>
+                <Column editable="true" title="C Offset" type="java.lang.Float"/>
+                <Column editable="true" title="Radius" type="java.lang.Float"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                    <ResourceString bundle="com/cchraplak/ugs/platform/plugin/toolchanger/Bundle.properties" key="ToolTableTopComponent.jTable1.columnModel.title0" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                    <ResourceString bundle="com/cchraplak/ugs/platform/plugin/toolchanger/Bundle.properties" key="ToolTableTopComponent.toolTable.columnModel.title0" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                   </Title>
                   <Editor/>
                   <Renderer/>
                 </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                    <ResourceString bundle="com/cchraplak/ugs/platform/plugin/toolchanger/Bundle.properties" key="ToolTableTopComponent.jTable1.columnModel.title1" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                    <ResourceString bundle="com/cchraplak/ugs/platform/plugin/toolchanger/Bundle.properties" key="ToolTableTopComponent.toolTable.columnModel.title1" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                   </Title>
                   <Editor/>
                   <Renderer/>
                 </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                    <ResourceString bundle="com/cchraplak/ugs/platform/plugin/toolchanger/Bundle.properties" key="ToolTableTopComponent.jTable1.columnModel.title2_1" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                    <ResourceString bundle="com/cchraplak/ugs/platform/plugin/toolchanger/Bundle.properties" key="ToolTableTopComponent.toolTable.columnModel.title2_1" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                  </Title>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                    <ResourceString bundle="com/cchraplak/ugs/platform/plugin/toolchanger/Bundle.properties" key="ToolTableTopComponent.jTable1.columnModel.title4_1" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                   </Title>
                   <Editor/>
                   <Renderer/>
@@ -134,12 +136,51 @@
                   <Editor/>
                   <Renderer/>
                 </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                    <ResourceString bundle="com/cchraplak/ugs/platform/plugin/toolchanger/Bundle.properties" key="ToolTableTopComponent.toolTable.columnModel.title6" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                  </Title>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                    <ResourceString bundle="com/cchraplak/ugs/platform/plugin/toolchanger/Bundle.properties" key="ToolTableTopComponent.toolTable.columnModel.title7" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                  </Title>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                    <ResourceString bundle="com/cchraplak/ugs/platform/plugin/toolchanger/Bundle.properties" key="ToolTableTopComponent.toolTable.columnModel.title8" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                  </Title>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                    <ResourceString bundle="com/cchraplak/ugs/platform/plugin/toolchanger/Bundle.properties" key="ToolTableTopComponent.toolTable.columnModel.title5" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                  </Title>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                    <ResourceString bundle="com/cchraplak/ugs/platform/plugin/toolchanger/Bundle.properties" key="ToolTableTopComponent.toolTable.columnModel.title9" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                  </Title>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
               </TableColumnModel>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="toolTableAncestorAdded"/>
+            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="toolTablePropertyChange"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -171,6 +212,16 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeToolActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="resetTable">
+      <Properties>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+          <ResourceString bundle="com/cchraplak/ugs/platform/plugin/toolchanger/Bundle.properties" key="ToolTableTopComponent.resetTable.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resetTableActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -9,13 +9,6 @@
   <instance class="com.cchraplak.ugs.platform.plugin.toolchanger.ToolTableTopComponent"/>
 </settings>
 ]]></file>
-            <file name="MyModuleTopComponent.settings">
-                <!--com.cchraplak.ugs.platform.plugin.toolchanger.testClass--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
-<settings version="1.0">
-  <instance class="com.cchraplak.ugs.platform.plugin.toolchanger.testClass"/>
-</settings>
-]]></file>
         </folder>
         <folder name="Modes">
             <folder name="output">
@@ -24,16 +17,6 @@
 <!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
 <tc-ref version="2.0">
   <tc-id id="ToolTableTopComponent"/>
-  <state opened="false"/>
-</tc-ref>
-]]></file>
-            </folder>
-            <folder name="bottom_left">
-                <file name="MyModuleTopComponent.wstcref">
-                    <!--com.cchraplak.ugs.platform.plugin.toolchanger.testClass--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
-<tc-ref version="2.0">
-  <tc-id id="MyModuleTopComponent"/>
   <state opened="false"/>
 </tc-ref>
 ]]></file>
@@ -49,13 +32,6 @@
                 <attr name="preferredID" stringvalue="ToolTableTopComponent"/>
                 <attr bundlevalue="com.cchraplak.ugs.platform.plugin.toolchanger.Bundle#CTL_ToolTableAction" name="displayName"/>
             </file>
-            <file name="com-willwinder-ugs-nbp-mymodule-MyModuleTopComponent.instance">
-                <!--com.cchraplak.ugs.platform.plugin.toolchanger.testClass-->
-                <attr methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
-                <attr name="component" newvalue="com.cchraplak.ugs.platform.plugin.toolchanger.testClass"/>
-                <attr name="preferredID" stringvalue="MyModuleTopComponent"/>
-                <attr name="displayName" stringvalue="My module"/>
-            </file>
         </folder>
     </folder>
     <folder name="Menu">
@@ -64,12 +40,6 @@
                 <!--com.cchraplak.ugs.platform.plugin.toolchanger.ToolTableTopComponent-->
                 <attr name="originalFile" stringvalue="Actions/Window/com-cchraplak-ugs-platform-plugin-toolchanger-ToolTableTopComponent.instance"/>
             </file>
-            <folder name="Plugins">
-                <file name="com-willwinder-ugs-nbp-mymodule-MyModuleTopComponent.shadow">
-                    <!--com.cchraplak.ugs.platform.plugin.toolchanger.testClass-->
-                    <attr name="originalFile" stringvalue="Actions/Window/com-willwinder-ugs-nbp-mymodule-MyModuleTopComponent.instance"/>
-                </file>
-            </folder>
         </folder>
     </folder>
     <folder name="xml">

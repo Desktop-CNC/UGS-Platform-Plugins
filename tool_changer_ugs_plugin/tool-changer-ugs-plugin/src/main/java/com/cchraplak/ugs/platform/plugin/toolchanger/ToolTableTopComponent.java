@@ -19,15 +19,30 @@ package com.cchraplak.ugs.platform.plugin.toolchanger;
 import com.willwinder.ugs.nbp.lib.Mode;
 import com.willwinder.ugs.nbp.lib.lookup.CentralLookup;
 import com.willwinder.ugs.nbp.lib.services.LocalizingService;
+import com.willwinder.universalgcodesender.gcode.GcodeParser;
+import com.willwinder.universalgcodesender.gcode.GcodeState;
+import com.willwinder.universalgcodesender.gcode.GcodeStats;
+import com.willwinder.universalgcodesender.gcode.ICommandCreator;
+import com.willwinder.universalgcodesender.gcode.IGcodeParser;
+import com.willwinder.universalgcodesender.gcode.processors.CommandProcessor;
+import com.willwinder.universalgcodesender.gcode.util.GcodeParserException;
 import com.willwinder.universalgcodesender.i18n.Localization;
+import com.willwinder.universalgcodesender.listeners.ControllerState;
+import com.willwinder.universalgcodesender.listeners.MessageListener;
+import com.willwinder.universalgcodesender.listeners.MessageType;
 import com.willwinder.universalgcodesender.listeners.UGSEventListener;
 import com.willwinder.universalgcodesender.model.BackendAPI;
 import com.willwinder.universalgcodesender.model.UGSEvent;
 import com.willwinder.universalgcodesender.model.events.ControllerStateEvent;
 import com.willwinder.universalgcodesender.utils.Settings;
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
@@ -58,15 +73,18 @@ import org.openide.util.NbBundle.Messages;
     "CTL_ToolTableTopComponent=ToolTable Window",
     "HINT_ToolTableTopComponent=This is a ToolTable window"
 })
-public final class ToolTableTopComponent extends TopComponent implements UGSEventListener {
+public final class ToolTableTopComponent extends TopComponent implements MessageListener, UGSEventListener {
 
     // UGS overide values
-    //public static final String ACTION_ID = "com.cchraplak.ugs.platform.plugin.toolchanger.ToolTableTopComponent";
+    public static final String ACTION_ID = "com.cchraplak.ugs.platform.plugin.toolchanger.ToolTableTopComponent";
     private final JLabel status = new JLabel();
     private final transient BackendAPI backend;
-    //private final Settings settings;
+    private final Settings settings;
     
-    @Override
+    private boolean listenToConsole = false;
+    private ArrayList<TableRow> table = new ArrayList<TableRow>();
+    
+    //@Override;
     public void UGSEvent(UGSEvent event) {
         if (event instanceof ControllerStateEvent controllerStateEvent) {
             status.setText(controllerStateEvent.getState().name());
@@ -89,10 +107,9 @@ public final class ToolTableTopComponent extends TopComponent implements UGSEven
         setToolTipText(Bundle.HINT_ToolTableTopComponent());
         
         // UGS backend
-        //settings = CentralLookup.getDefault().lookup(Settings.class);
+        settings = CentralLookup.getDefault().lookup(Settings.class);
         backend = CentralLookup.getDefault().lookup(BackendAPI.class);
         backend.addUGSEventListener(this);
-        
     }
 
     /**
@@ -104,41 +121,54 @@ public final class ToolTableTopComponent extends TopComponent implements UGSEven
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        toolTable = new javax.swing.JTable();
         randomPos = new javax.swing.JButton();
         loadTool = new javax.swing.JButton();
         removeTool = new javax.swing.JButton();
+        resetTable = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        toolTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, "Test1", "asdf", null},
-                {null, "Test2", null, null}
+
             },
             new String [] {
-                "ID", "Name", "Description", "Loaded?"
+                "ID", "Name", "Description", "Pocket", "Current", "X Offset", "Y Offset", "Z Offset", "C Offset", "Radius"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, true, true, false
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        });
+        toolTable.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                toolTableAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setHeaderValue(org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.jTable1.columnModel.title0")); // NOI18N
-            jTable1.getColumnModel().getColumn(1).setHeaderValue(org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.jTable1.columnModel.title1")); // NOI18N
-            jTable1.getColumnModel().getColumn(2).setHeaderValue(org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.jTable1.columnModel.title2_1")); // NOI18N
-            jTable1.getColumnModel().getColumn(3).setHeaderValue(org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.jTable1.columnModel.title3_1")); // NOI18N
+        toolTable.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                toolTablePropertyChange(evt);
+            }
+        });
+        jScrollPane1.setViewportView(toolTable);
+        if (toolTable.getColumnModel().getColumnCount() > 0) {
+            toolTable.getColumnModel().getColumn(0).setHeaderValue(org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.toolTable.columnModel.title0")); // NOI18N
+            toolTable.getColumnModel().getColumn(1).setHeaderValue(org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.toolTable.columnModel.title1")); // NOI18N
+            toolTable.getColumnModel().getColumn(2).setHeaderValue(org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.toolTable.columnModel.title2_1")); // NOI18N
+            toolTable.getColumnModel().getColumn(3).setHeaderValue(org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.jTable1.columnModel.title4_1")); // NOI18N
+            toolTable.getColumnModel().getColumn(4).setHeaderValue(org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.jTable1.columnModel.title3_1")); // NOI18N
+            toolTable.getColumnModel().getColumn(5).setHeaderValue(org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.toolTable.columnModel.title6")); // NOI18N
+            toolTable.getColumnModel().getColumn(6).setHeaderValue(org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.toolTable.columnModel.title7")); // NOI18N
+            toolTable.getColumnModel().getColumn(7).setHeaderValue(org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.toolTable.columnModel.title8")); // NOI18N
+            toolTable.getColumnModel().getColumn(8).setHeaderValue(org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.toolTable.columnModel.title5")); // NOI18N
+            toolTable.getColumnModel().getColumn(9).setHeaderValue(org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.toolTable.columnModel.title9")); // NOI18N
         }
 
         org.openide.awt.Mnemonics.setLocalizedText(randomPos, org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.randomPos.text")); // NOI18N
@@ -162,40 +192,45 @@ public final class ToolTableTopComponent extends TopComponent implements UGSEven
             }
         });
 
+        org.openide.awt.Mnemonics.setLocalizedText(resetTable, org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.resetTable.text")); // NOI18N
+        resetTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetTableActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                        .addComponent(randomPos)
-                        .addGap(46, 46, 46))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(removeTool)
-                            .addComponent(loadTool))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(resetTable)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(randomPos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(loadTool)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(removeTool)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(randomPos)
-                        .addGap(29, 29, 29)
-                        .addComponent(loadTool)
-                        .addGap(18, 18, 18)
-                        .addComponent(removeTool)))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(resetTable)
+                    .addComponent(randomPos)
+                    .addComponent(loadTool)
+                    .addComponent(removeTool))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -235,12 +270,53 @@ public final class ToolTableTopComponent extends TopComponent implements UGSEven
         }
     }//GEN-LAST:event_removeToolActionPerformed
 
+    private void resetTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetTableActionPerformed
+        // TODO add your handling code here:
+        
+        try {
+            backend.sendGcodeCommand("$#");
+            System.out.println("Start of message");
+        }
+        catch (Exception e) {
+            System.out.println("\n\n===================================Error retrieving tool table===================================\n\n");
+        }
+        
+        listenToConsole = true;
+    }//GEN-LAST:event_resetTableActionPerformed
+
+    private void toolTableAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_toolTableAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_toolTableAncestorAdded
+
+    private void toolTablePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_toolTablePropertyChange
+        // TODO add your handling code here:
+        int column = toolTable.getSelectedColumn();
+        int row = toolTable.getSelectedRow();
+        //TableModel model = toolTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) toolTable.getModel();
+        
+        try {
+            String newVal = String.valueOf(model.getValueAt(row, column));
+            boolean updated = editRow(row, column, newVal);
+            
+            /*if (!updated) {
+                addRow(row);
+            }*/
+        }
+        catch (Exception e) {
+            System.out.println("Unable to edit value");
+        }
+        
+        
+    }//GEN-LAST:event_toolTablePropertyChange
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton loadTool;
     private javax.swing.JButton randomPos;
     private javax.swing.JButton removeTool;
+    private javax.swing.JButton resetTable;
+    private javax.swing.JTable toolTable;
     // End of variables declaration//GEN-END:variables
     @Override
     public void componentOpened() {
@@ -251,6 +327,7 @@ public final class ToolTableTopComponent extends TopComponent implements UGSEven
         setName(Localization.getString("Tool Changer"));
         setToolTipText(Localization.getString("toolchanger"));
         backend.addUGSEventListener(this);
+        backend.addMessageListener(this);
         
         // startup
     }
@@ -272,5 +349,120 @@ public final class ToolTableTopComponent extends TopComponent implements UGSEven
     void readProperties(java.util.Properties p) {
         String version = p.getProperty("version");
         // TODO read your settings according to their version
+    }
+    
+    private void addRow(int row, Float[] offsets, Float radius) {
+        try {
+            DefaultTableModel model = (DefaultTableModel) toolTable.getModel();
+
+            table.add(new TableRow(row, offsets[0], offsets[1], offsets[2], offsets[3], radius));
+            Object[] comp = { row, "name", "description", null, null,  offsets[0], offsets[1], offsets[2], offsets[3], radius};
+            model.addRow(comp);
+        }
+        catch (Exception e) {
+            System.out.println("Unable to parse variables!!!");
+        }
+    }
+    
+    private boolean editRow(int row, int column, String newValue) throws Exception {
+        
+        if (row >= toolTable.getRowCount()) {
+            System.out.println("Row out of bounds!");
+            return false;
+        }
+        
+        for (int i = 0; i < table.size(); i++) {
+            int id = table.get(i).getID();
+            if (id == row) {
+                switch (column) {
+                    case 1:
+                        table.get(i).setName(newValue);
+                    break;
+                    case 2:
+                        table.get(i).setDescription(newValue);
+                    break;
+                    case 3:
+                        table.get(i).setPocket(Integer.parseInt(newValue));
+                    break;
+                    case 4:
+                        table.get(i).setCurrent(Boolean.parseBoolean(newValue));
+                    break;
+                    case 5:
+                        table.get(i).setXOffset(Float.parseFloat(newValue));
+                    break;
+                    case 6:
+                        table.get(i).setYOffset(Float.parseFloat(newValue));
+                    break;
+                    case 7:
+                        table.get(i).setZOffset(Float.parseFloat(newValue));
+                    break;
+                    case 8:
+                        table.get(i).setCOffset(Float.parseFloat(newValue));
+                    break;
+                    case 9:
+                        table.get(i).setRadius(Float.parseFloat(newValue));
+                    break;
+                    default:
+                        System.out.println("Unable to edit value!");
+                    break;
+                }
+                return true;
+            }
+        }
+        System.out.println("No values to edit!");
+        return false;
+    }
+
+    @Override
+    public void onMessage(MessageType messageType, String message) {
+        
+        if (listenToConsole) {
+            
+            if (message.contains("T:")) {
+                int start = message.indexOf(":");
+                int middle = message.indexOf("|");
+                int end = message.lastIndexOf("|");
+                
+                String[] offsetStrings = message.substring(middle + 1, end).split(",");
+                Float[] offsets = new Float[4];
+                offsets[3] = null;
+                for (int i = 0; i < offsetStrings.length; i++) {
+                    offsets[i] = Float.parseFloat(offsetStrings[i]);
+                }
+                
+                String idSring = message.substring(start + 1, middle);
+                Integer id = Integer.parseInt(idSring);
+                String radiusString = message.substring(end + 1, message.length() - 2);
+                Float radius = Float.parseFloat(radiusString);
+                
+                
+                for (int i = 0; i < table.size(); i++) {
+                    if (table.get(i).getID() == id) {
+                        try {
+                            editRow(id, 0, idSring);
+                            editRow(id, 5, offsetStrings[0]);
+                            editRow(id, 6, offsetStrings[1]);
+                            editRow(id, 7, offsetStrings[2]);
+                            if (offsetStrings.length > 3) {
+                                editRow(id, 8, offsetStrings[3]);
+                            }
+                            editRow(id, 9, radiusString);
+                            return;
+                        }
+                        catch (Exception e) {
+                            System.out.println("Unable to edit row from GCode!");
+                        }
+                    }
+                }
+                addRow(id, offsets, radius);
+            }
+            else if (message.contains("TLO")) {
+                
+            }
+            else if (message.contains("ok")) {
+                System.out.println("Message Ended!");
+                listenToConsole = false;
+            }
+        }
     }
 }
