@@ -16,18 +16,8 @@
  */
 package com.cchraplak.ugs.platform.plugin.toolchanger;
 
-import com.willwinder.ugs.nbp.lib.Mode;
 import com.willwinder.ugs.nbp.lib.lookup.CentralLookup;
-import com.willwinder.ugs.nbp.lib.services.LocalizingService;
-import com.willwinder.universalgcodesender.gcode.GcodeParser;
-import com.willwinder.universalgcodesender.gcode.GcodeState;
-import com.willwinder.universalgcodesender.gcode.GcodeStats;
-import com.willwinder.universalgcodesender.gcode.ICommandCreator;
-import com.willwinder.universalgcodesender.gcode.IGcodeParser;
-import com.willwinder.universalgcodesender.gcode.processors.CommandProcessor;
-import com.willwinder.universalgcodesender.gcode.util.GcodeParserException;
 import com.willwinder.universalgcodesender.i18n.Localization;
-import com.willwinder.universalgcodesender.listeners.ControllerState;
 import com.willwinder.universalgcodesender.listeners.MessageListener;
 import com.willwinder.universalgcodesender.listeners.MessageType;
 import com.willwinder.universalgcodesender.listeners.UGSEventListener;
@@ -35,14 +25,10 @@ import com.willwinder.universalgcodesender.model.BackendAPI;
 import com.willwinder.universalgcodesender.model.UGSEvent;
 import com.willwinder.universalgcodesender.model.events.ControllerStateEvent;
 import com.willwinder.universalgcodesender.utils.Settings;
-import java.awt.BorderLayout;
-import java.awt.Component;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
@@ -273,6 +259,8 @@ public final class ToolTableTopComponent extends TopComponent implements Message
     private void resetTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetTableActionPerformed
         // TODO add your handling code here:
         
+        removeTable();
+        
         try {
             backend.sendGcodeCommand("$#");
             System.out.println("Start of message");
@@ -297,11 +285,7 @@ public final class ToolTableTopComponent extends TopComponent implements Message
         
         try {
             String newVal = String.valueOf(model.getValueAt(row, column));
-            boolean updated = editRow(row, column, newVal);
-            
-            /*if (!updated) {
-                addRow(row);
-            }*/
+            editRow(row, column, newVal);
         }
         catch (Exception e) {
             System.out.println("Unable to edit value");
@@ -351,66 +335,92 @@ public final class ToolTableTopComponent extends TopComponent implements Message
         // TODO read your settings according to their version
     }
     
-    private void addRow(int row, Float[] offsets, Float radius) {
+    private void addRow(int id, Float[] offsets, Float radius) {
+
         try {
             DefaultTableModel model = (DefaultTableModel) toolTable.getModel();
 
-            table.add(new TableRow(row, offsets[0], offsets[1], offsets[2], offsets[3], radius));
-            Object[] comp = { row, "name", "description", null, null,  offsets[0], offsets[1], offsets[2], offsets[3], radius};
+            Object[] comp = { id, "name", "description", null, null,  offsets[0], offsets[1], offsets[2], offsets[3], radius};
             model.addRow(comp);
+            table.add(new TableRow(id, offsets[0], offsets[1], offsets[2], offsets[3], radius));
         }
         catch (Exception e) {
             System.out.println("Unable to parse variables!!!");
         }
     }
     
-    private boolean editRow(int row, int column, String newValue) throws Exception {
+    private void editRow(int row, int column, String newValue) throws Exception {
         
-        if (row >= toolTable.getRowCount()) {
+        System.out.println("Edit: " + Integer.toString(row) + ", " + Integer.toString(column) + ", new value: " + newValue + ", old value: " + toolTable.getValueAt(row, column));
+        
+        if (row >= toolTable.getRowCount() || row < 0) {
             System.out.println("Row out of bounds!");
-            return false;
+            return;
         }
         
-        for (int i = 0; i < table.size(); i++) {
-            int id = table.get(i).getID();
-            if (id == row) {
-                switch (column) {
-                    case 1:
-                        table.get(i).setName(newValue);
-                    break;
-                    case 2:
-                        table.get(i).setDescription(newValue);
-                    break;
-                    case 3:
-                        table.get(i).setPocket(Integer.parseInt(newValue));
-                    break;
-                    case 4:
-                        table.get(i).setCurrent(Boolean.parseBoolean(newValue));
-                    break;
-                    case 5:
-                        table.get(i).setXOffset(Float.parseFloat(newValue));
-                    break;
-                    case 6:
-                        table.get(i).setYOffset(Float.parseFloat(newValue));
-                    break;
-                    case 7:
-                        table.get(i).setZOffset(Float.parseFloat(newValue));
-                    break;
-                    case 8:
-                        table.get(i).setCOffset(Float.parseFloat(newValue));
-                    break;
-                    case 9:
-                        table.get(i).setRadius(Float.parseFloat(newValue));
-                    break;
-                    default:
-                        System.out.println("Unable to edit value!");
-                    break;
+        int id = table.get(row).getID();
+        switch (column) {
+            case 1:
+                table.get(row).setName(newValue);
+            break;
+            case 2:
+                table.get(row).setDescription(newValue);
+            break;
+            case 3:
+                table.get(row).setPocket(Integer.valueOf(newValue));
+            break;
+            case 4:
+
+                DefaultTableModel model = (DefaultTableModel) toolTable.getModel();
+
+                boolean loaded = false;
+
+                boolean current = Boolean.valueOf(newValue);
+
+                if (!current) {
+                    table.get(row).setCurrent(false);
                 }
-                return true;
-            }
+
+                for (int j = 0; j < table.size(); j++) {
+                    if (table.get(j).getCurrent()) {
+                        loaded = true;
+                    }
+                }
+                if (loaded) {
+                    System.out.println("Another tool in place");
+                }
+                else {
+                    // TODO: add code for getting current tool
+                    backend.sendGcodeCommand("T" + Integer.toString(id));
+                    table.get(row).setCurrent(current);
+                    model.setValueAt(newValue, row, 4);
+                }
+
+            break;
+            case 5:
+                backend.sendGcodeCommand("G10 L1 P" + Integer.toString(id) + " X" + newValue);
+                table.get(row).setXOffset(Float.valueOf(newValue));
+            break;
+            case 6:
+                backend.sendGcodeCommand("G10 L1 P" + Integer.toString(id) + " Y" + newValue);
+                table.get(row).setYOffset(Float.valueOf(newValue));
+            break;
+            case 7:
+                backend.sendGcodeCommand("G10 L1 P" + Integer.toString(id) + " Z" + newValue);
+                table.get(row).setZOffset(Float.valueOf(newValue));
+            break;
+            case 8:
+                backend.sendGcodeCommand("G10 L1 P" + Integer.toString(id) + " A" + newValue);
+                table.get(row).setCOffset(Float.valueOf(newValue));
+            break;
+            case 9:
+                //backend.sendGcodeCommand("G10 L1 P" + Integer.toString(id) + " R" + newValue);
+                table.get(row).setRadius(Float.valueOf(newValue));
+            break;
+            default:
+                System.out.println("No value edited!");
+            break;
         }
-        System.out.println("No values to edit!");
-        return false;
     }
 
     @Override
@@ -419,25 +429,25 @@ public final class ToolTableTopComponent extends TopComponent implements Message
         if (listenToConsole) {
             
             if (message.contains("T:")) {
-                int start = message.indexOf(":");
-                int middle = message.indexOf("|");
-                int end = message.lastIndexOf("|");
+                int start = message.indexOf(':');
+                int middle = message.indexOf('|');
+                int end = message.lastIndexOf('|');
                 
                 String[] offsetStrings = message.substring(middle + 1, end).split(",");
                 Float[] offsets = new Float[4];
                 offsets[3] = null;
                 for (int i = 0; i < offsetStrings.length; i++) {
-                    offsets[i] = Float.parseFloat(offsetStrings[i]);
+                    offsets[i] = Float.valueOf(offsetStrings[i]);
                 }
                 
                 String idSring = message.substring(start + 1, middle);
-                Integer id = Integer.parseInt(idSring);
+                Integer id = Integer.valueOf(idSring);
                 String radiusString = message.substring(end + 1, message.length() - 2);
-                Float radius = Float.parseFloat(radiusString);
+                Float radius = Float.valueOf(radiusString);
                 
                 
                 for (int i = 0; i < table.size(); i++) {
-                    if (table.get(i).getID() == id) {
+                    if (Objects.equals(table.get(i).getID(), id)) {
                         try {
                             editRow(id, 0, idSring);
                             editRow(id, 5, offsetStrings[0]);
@@ -463,6 +473,18 @@ public final class ToolTableTopComponent extends TopComponent implements Message
                 System.out.println("Message Ended!");
                 listenToConsole = false;
             }
+        }
+    }
+    
+    public void removeTable() {
+        
+        table.removeAll(table);
+        
+        DefaultTableModel model = (DefaultTableModel) toolTable.getModel();
+        final int numRos = model.getRowCount();
+        
+        for (int i = numRos - 1; i >= 0; i--) {
+            model.removeRow(i);
         }
     }
 }
