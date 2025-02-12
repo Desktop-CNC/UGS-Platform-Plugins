@@ -69,6 +69,7 @@ public final class ToolTableTopComponent extends TopComponent implements Message
     
     private boolean listenToConsole = false;
     private ArrayList<TableRow> table = new ArrayList<TableRow>();
+    private boolean retrievedTable = false;
     
     //@Override;
     public void UGSEvent(UGSEvent event) {
@@ -313,7 +314,16 @@ public final class ToolTableTopComponent extends TopComponent implements Message
         backend.addUGSEventListener(this);
         backend.addMessageListener(this);
         
-        // startup
+        try {
+            if (!retrievedTable) {
+                listenToConsole = true;
+                backend.sendGcodeCommand("$#");
+                System.out.println("Startup Retrieve");
+            }
+        }
+        catch (Exception e) {
+            System.out.println("\n\n===================================Error startup retrieving tool table===================================\n\n");
+        }
     }
 
     @Override
@@ -321,6 +331,7 @@ public final class ToolTableTopComponent extends TopComponent implements Message
         // UGS overrides
         super.componentClosed();
         backend.removeUGSEventListener(this);
+        retrievedTable = false;
     }
 
     void writeProperties(java.util.Properties p) {
@@ -426,6 +437,30 @@ public final class ToolTableTopComponent extends TopComponent implements Message
     @Override
     public void onMessage(MessageType messageType, String message) {
         
+        if (!retrievedTable) {
+            if (message.contains("Connected")) {
+                try {
+                    listenToConsole = true;
+                    backend.sendGcodeCommand("$#");
+                    System.out.println("connected getting table");
+                    retrievedTable = true;
+                }
+                catch (Exception e) {
+                    System.out.println("Failed connected getting table");
+                }
+            }
+            else if (message.contains("$#")) {
+                try {
+                    listenToConsole = true;
+                    System.out.println("Auto getting table");
+                    retrievedTable = true;
+                }
+                catch (Exception e) {
+                    System.out.println("Failed auto getting table");
+                }
+            }
+        }
+        
         if (listenToConsole) {
             
             if (message.contains("T:")) {
@@ -477,6 +512,8 @@ public final class ToolTableTopComponent extends TopComponent implements Message
     }
     
     public void removeTable() {
+        
+        retrievedTable = false;
         
         table.removeAll(table);
         
