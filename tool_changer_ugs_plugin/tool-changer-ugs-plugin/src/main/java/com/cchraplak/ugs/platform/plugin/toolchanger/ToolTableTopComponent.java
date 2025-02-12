@@ -125,9 +125,16 @@ public final class ToolTableTopComponent extends TopComponent implements Message
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true, true, true, true, true
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         toolTable.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -314,6 +321,8 @@ public final class ToolTableTopComponent extends TopComponent implements Message
         backend.addUGSEventListener(this);
         backend.addMessageListener(this);
         
+        removeTable();
+        
         try {
             if (!retrievedTable) {
                 listenToConsole = true;
@@ -372,13 +381,20 @@ public final class ToolTableTopComponent extends TopComponent implements Message
         int id = table.get(row).getID();
         switch (column) {
             case 1:
-                table.get(row).setName(newValue);
+                if (!Objects.equals(table.get(row).getName(), newValue)) {
+                    table.get(row).setName(newValue);
+                }
             break;
             case 2:
-                table.get(row).setDescription(newValue);
+                if (!Objects.equals(table.get(row).getDescription(), newValue)) {
+                    table.get(row).setDescription(newValue);
+                }
             break;
             case 3:
-                table.get(row).setPocket(Integer.valueOf(newValue));
+                Integer newPocket = Integer.valueOf(newValue);
+                if (!Objects.equals(table.get(row).getPocket(), newPocket)) {
+                    table.get(row).setPocket(newPocket);
+                }
             break;
             case 4:
 
@@ -409,24 +425,40 @@ public final class ToolTableTopComponent extends TopComponent implements Message
 
             break;
             case 5:
-                backend.sendGcodeCommand("G10 L1 P" + Integer.toString(id) + " X" + newValue);
-                table.get(row).setXOffset(Float.valueOf(newValue));
+                Float newX = Float.valueOf(newValue);
+                if (!Objects.equals(table.get(row).getXOffset(), newX)) {
+                    backend.sendGcodeCommand("G10 L1 P" + Integer.toString(id) + " X" + newValue);
+                    table.get(row).setXOffset(newX);
+                }
             break;
             case 6:
-                backend.sendGcodeCommand("G10 L1 P" + Integer.toString(id) + " Y" + newValue);
-                table.get(row).setYOffset(Float.valueOf(newValue));
+                Float newY = Float.valueOf(newValue);
+                if (!Objects.equals(table.get(row).getYOffset(), newY)) {
+                    backend.sendGcodeCommand("G10 L1 P" + Integer.toString(id) + " Y" + newValue);
+                    table.get(row).setYOffset(newY);
+                }
             break;
             case 7:
-                backend.sendGcodeCommand("G10 L1 P" + Integer.toString(id) + " Z" + newValue);
-                table.get(row).setZOffset(Float.valueOf(newValue));
+                Float newZ = Float.valueOf(newValue);
+                if (!Objects.equals(table.get(row).getZOffset(), newZ)) {
+                    backend.sendGcodeCommand("G10 L1 P" + Integer.toString(id) + " Z" + newValue);
+                    table.get(row).setZOffset(newZ);
+                }
             break;
             case 8:
-                backend.sendGcodeCommand("G10 L1 P" + Integer.toString(id) + " A" + newValue);
-                table.get(row).setCOffset(Float.valueOf(newValue));
+                Float newA = Float.valueOf(newValue);
+                if (!Objects.equals(table.get(row).getCOffset(), newA)) {
+                    backend.sendGcodeCommand("G10 L1 P" + Integer.toString(id) + " A" + newValue);
+                    table.get(row).setCOffset(newA);
+                }
+                
             break;
             case 9:
-                //backend.sendGcodeCommand("G10 L1 P" + Integer.toString(id) + " R" + newValue);
-                table.get(row).setRadius(Float.valueOf(newValue));
+                Float newR = Float.valueOf(newValue);
+                if (!Objects.equals(table.get(row).getRadius(), newR)) {
+                    //backend.sendGcodeCommand("G10 L1 P" + Integer.toString(id) + " R" + newValue);
+                    table.get(row).setRadius(newR);
+                }
             break;
             default:
                 System.out.println("No value edited!");
