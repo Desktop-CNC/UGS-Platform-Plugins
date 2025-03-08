@@ -17,6 +17,7 @@
 package com.cchraplak.ugs.platform.plugin.logger;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -83,6 +84,7 @@ public final class LoggerTopComponent extends TopComponent {
         selDir = new javax.swing.JButton();
         recordStatus = new javax.swing.JLabel();
         dirLoaded = new javax.swing.JLabel();
+        openDir = new javax.swing.JButton();
 
         org.openide.awt.Mnemonics.setLocalizedText(startRecord, org.openide.util.NbBundle.getMessage(LoggerTopComponent.class, "LoggerTopComponent.startRecord.text")); // NOI18N
         startRecord.addActionListener(new java.awt.event.ActionListener() {
@@ -114,6 +116,13 @@ public final class LoggerTopComponent extends TopComponent {
         org.openide.awt.Mnemonics.setLocalizedText(dirLoaded, org.openide.util.NbBundle.getMessage(LoggerTopComponent.class, "LoggerTopComponent.dirLoaded.text")); // NOI18N
         dirLoaded.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
+        org.openide.awt.Mnemonics.setLocalizedText(openDir, org.openide.util.NbBundle.getMessage(LoggerTopComponent.class, "LoggerTopComponent.openDir.text")); // NOI18N
+        openDir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openDirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,12 +131,16 @@ public final class LoggerTopComponent extends TopComponent {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(startRecord)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(endRecord)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(selDir)
-                        .addGap(0, 61, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(startRecord)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(endRecord))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(selDir)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(openDir)))
+                        .addGap(0, 111, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(dirLoaded, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -140,13 +153,16 @@ public final class LoggerTopComponent extends TopComponent {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(startRecord)
-                    .addComponent(endRecord)
-                    .addComponent(selDir))
+                    .addComponent(endRecord))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(recordStatus)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dirLoaded, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(selDir)
+                    .addComponent(openDir))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dirLoaded, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -219,10 +235,21 @@ public final class LoggerTopComponent extends TopComponent {
         }
     }//GEN-LAST:event_endRecordActionPerformed
 
+    private void openDirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openDirActionPerformed
+        // TODO add your handling code here:
+        try {
+            Desktop.getDesktop().open(new File(directoryString));
+        }
+        catch (Exception e) {
+            System.out.println("Couldn't open directory!");
+        }
+    }//GEN-LAST:event_openDirActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel dirLoaded;
     private javax.swing.JButton endRecord;
     private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JButton openDir;
     private javax.swing.JLabel recordStatus;
     private javax.swing.JButton selDir;
     private javax.swing.JButton startRecord;
