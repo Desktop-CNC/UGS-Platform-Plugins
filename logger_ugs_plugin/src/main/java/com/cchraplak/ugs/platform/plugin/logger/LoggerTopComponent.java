@@ -20,6 +20,7 @@ import java.awt.Color;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalTime;
 import java.util.Scanner;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
@@ -57,6 +58,9 @@ public final class LoggerTopComponent extends TopComponent {
     
     private String directoryString = FileSystemView.getFileSystemView().getHomeDirectory().toString();
     private final String dirFile = "root_directory.txt";
+    
+    private FileWriter positionWriter = null;
+    private FileWriter gcodeWriter = null;
 
     public LoggerTopComponent() {
         initComponents();
@@ -148,8 +152,26 @@ public final class LoggerTopComponent extends TopComponent {
 
     private void startRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startRecordActionPerformed
         // TODO add your handling code here:
-        recordStatus.setText("Recording");
-        recordStatus.setForeground(Color.green);
+        
+        String time = LocalTime.now().toString();
+        time = time.substring(0, time.length() - 6);
+        
+        try {
+            if (positionWriter == null && gcodeWriter == null) {
+                positionWriter = new FileWriter(directoryString + "/position_" + time + ".txt");
+                gcodeWriter = new FileWriter(directoryString + "/gcode_" + time + ".txt");
+                recordStatus.setText("Recording");
+                recordStatus.setForeground(Color.green);
+            }
+            else {
+                System.out.println("Files already recording!");
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Error starting files!");
+            recordStatus.setText("ERROR");
+            recordStatus.setForeground(Color.orange);
+        }
     }//GEN-LAST:event_startRecordActionPerformed
 
     private void selDirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selDirActionPerformed
@@ -172,8 +194,29 @@ public final class LoggerTopComponent extends TopComponent {
 
     private void endRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endRecordActionPerformed
         // TODO add your handling code here:
-        recordStatus.setText("Not Recording");
-        recordStatus.setForeground(Color.red);
+        
+        try {
+            if (positionWriter != null && gcodeWriter != null) {
+                String time = LocalTime.now().toString();
+                time = time.substring(0, time.length() - 6);
+                positionWriter.write(time);
+                gcodeWriter.write(time);
+                positionWriter.close();
+                gcodeWriter.close();
+                positionWriter = null;
+                gcodeWriter = null;
+                recordStatus.setText("Not Recording");
+                recordStatus.setForeground(Color.red);
+            }
+            else {
+                System.out.println("Files not started!");
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Error ending files!");
+            recordStatus.setText("ERROR");
+            recordStatus.setForeground(Color.orange);
+        }
     }//GEN-LAST:event_endRecordActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
