@@ -16,6 +16,16 @@
  */
 package com.cchraplak.ugs.platform.plugin.logger;
 
+import com.willwinder.ugs.nbp.lib.lookup.CentralLookup;
+import com.willwinder.universalgcodesender.i18n.Localization;
+import com.willwinder.universalgcodesender.listeners.MessageListener;
+import com.willwinder.universalgcodesender.listeners.MessageType;
+import com.willwinder.universalgcodesender.listeners.UGSEventListener;
+import com.willwinder.universalgcodesender.model.BackendAPI;
+import com.willwinder.universalgcodesender.model.UGSEvent;
+import com.willwinder.universalgcodesender.model.events.ControllerStateEvent;
+import com.willwinder.universalgcodesender.utils.Settings;
+
 import java.awt.Color;
 import java.awt.Desktop;
 import java.io.File;
@@ -24,6 +34,7 @@ import java.io.IOException;
 import java.time.LocalTime;
 import java.util.Scanner;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.filechooser.FileSystemView;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
@@ -51,23 +62,129 @@ import org.openide.util.NbBundle.Messages;
         preferredID = "LoggerTopComponent"
 )
 @Messages({
-    "CTL_LoggerAction=Logger",
-    "CTL_LoggerTopComponent=Logger Window",
+    "CTL_LoggerAction=Machine Logger",
+    "CTL_LoggerTopComponent=Machine Logger",
     "HINT_LoggerTopComponent=This is a Logger window"
 })
-public final class LoggerTopComponent extends TopComponent {
+public final class LoggerTopComponent extends TopComponent implements MessageListener, UGSEventListener {
+    
+    // UGS overide values
+    public static final String ACTION_ID = "com.cchraplak.ugs.platform.plugin.logger.LoggerTopComponent";
+    private final JLabel status = new JLabel();
+    private final transient BackendAPI backend;
+    private final Settings settings;
+    
+    //@Override;
+    public void UGSEvent(UGSEvent event) {
+        if (event instanceof ControllerStateEvent controllerStateEvent) {
+            status.setText(controllerStateEvent.getState().name());
+        }
+    }
     
     private String directoryString = FileSystemView.getFileSystemView().getHomeDirectory().toString();
     private final String dirFile = "root_directory.txt";
     
     private FileWriter positionWriter = null;
     private FileWriter gcodeWriter = null;
+    private float cwo[] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
+    private int numAxis = 0;
+    
+    @Override
+    public void onMessage(MessageType messageType, String message) {
+        //System.out.println(message);
+        
+        String time = LocalTime.now().toString();
+        time = time.substring(0, time.length() - 6);
+        
+        try {
+            if (numAxis == 0) {
+                if (message.contains("<")) {
+                    String inputs[] = message.split("\\|");
+                    for (int i = 0; i < inputs.length; i++) {
+                        String input = inputs[i];
+                        if (input.contains("MPos:")) {
+                            input = input.replace("MPos:", "");
+                            String filtered[] = input.split(",");
+                            numAxis = filtered.length;
+                            i = inputs.length;
+                        }
+                    }
+                }
+            }
+            else if (message.contains("Connection closed")) {
+                stopRecording();
+                numAxis = 0;
+            }
+            else if (message.contains(">>> ")) {
+                String input = message.replace(">>> ", "");
+                input = input.replace("\n", "");
+                if (input.length() > 0) {
+                    gcodeWriter.write(time + "," + input + ",\n");
+                }
+            }
+            else if (message.contains("<")) {
+                String inputs[] = message.split("\\|");
+                
+                String outputs[] = new String[2*numAxis + 3];
+                for (int i = 0; i < inputs.length; i++) {
+                    String input = inputs[i];
+                    if (input.contains("MPos:")) {
+                        input = input.replace("MPos:", "");
+                        String filtered[] = input.split(",");
+                        for (int j = 0; j < filtered.length; j++) {
+                            float value = Float.parseFloat(filtered[j]);
+                            outputs[j] = filtered[j];
+                            outputs[j + numAxis] = Float.toString(value - cwo[j]);
+                        }
+                    }
+                    else if (input.contains("Ln:")) {
+                        input = input.replace("Ln:", "");
+                        outputs[2*numAxis + 2] = input;
+                    }
+                    else if (input.contains("FS:")) {
+                        input = input.replace("FS:", "");
+                        String filtered[] = input.split(",");
+                        for (int j = 0; j < filtered.length; j++) {
+                            outputs[j + 2*numAxis] = filtered[j];
+                        }
+                    }
+                    else if (input.contains("WCO:")) {
+                        input = input.replace("WCO:", "");
+                        String filtered[] = input.split(",");
+                        for (int j = 0; j < filtered.length; j++) {
+                            float value = Float.parseFloat(filtered[j]);
+                            cwo[j] = value;
+                        }
+                    }
+                }
+                
+                String resultString = time + ",";
+                for (int i = 0; i < outputs.length; i++) {
+                    if (outputs[i] == null) {
+                        outputs[i] = "";
+                    }
+                    resultString += outputs[i] + ",";
+                }
+                resultString += "\n";
+                positionWriter.write(resultString);
+            }
+        }
+        catch (Exception e) {
+            
+        }
+        
+        
+    }
 
     public LoggerTopComponent() {
         initComponents();
         setName(Bundle.CTL_LoggerTopComponent());
         setToolTipText(Bundle.HINT_LoggerTopComponent());
 
+        // UGS backend
+        settings = CentralLookup.getDefault().lookup(Settings.class);
+        backend = CentralLookup.getDefault().lookup(BackendAPI.class);
+        backend.addUGSEventListener(this);
     }
 
     /**
@@ -173,9 +290,22 @@ public final class LoggerTopComponent extends TopComponent {
         time = time.substring(0, time.length() - 6);
         
         try {
-            if (positionWriter == null && gcodeWriter == null) {
+            if (positionWriter == null && gcodeWriter == null && numAxis != 0) {
                 positionWriter = new FileWriter(directoryString + "/position_" + time + ".txt");
                 gcodeWriter = new FileWriter(directoryString + "/gcode_" + time + ".txt");
+                
+                String positionHeader = "Time,";
+                String axis[] = {"X", "Y", "Z", "A", "B", "C"};
+                for (int i = 0; i < numAxis; i++) {
+                    positionHeader += "Machine " + axis[i] + ",";
+                }
+                for (int i = 0; i < numAxis; i++) {
+                    positionHeader += "Work " + axis[i] + ",";
+                }
+                positionHeader += "Feed Rate,Spindle Speed,Line Number,\n";
+                positionWriter.write(positionHeader);
+                gcodeWriter.write("Time,Command,\n");
+                
                 recordStatus.setText("Recording");
                 recordStatus.setForeground(Color.green);
             }
@@ -208,15 +338,10 @@ public final class LoggerTopComponent extends TopComponent {
         }
     }//GEN-LAST:event_selDirActionPerformed
 
-    private void endRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endRecordActionPerformed
-        // TODO add your handling code here:
-        
+    
+    private void stopRecording() {
         try {
             if (positionWriter != null && gcodeWriter != null) {
-                String time = LocalTime.now().toString();
-                time = time.substring(0, time.length() - 6);
-                positionWriter.write(time);
-                gcodeWriter.write(time);
                 positionWriter.close();
                 gcodeWriter.close();
                 positionWriter = null;
@@ -233,6 +358,11 @@ public final class LoggerTopComponent extends TopComponent {
             recordStatus.setText("ERROR");
             recordStatus.setForeground(Color.orange);
         }
+    }
+    
+    private void endRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endRecordActionPerformed
+        // TODO add your handling code here:
+        stopRecording();
     }//GEN-LAST:event_endRecordActionPerformed
 
     private void openDirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openDirActionPerformed
@@ -258,12 +388,18 @@ public final class LoggerTopComponent extends TopComponent {
     public void componentOpened() {
         // TODO add custom code on component opening
         
+        // UGS overides
+        super.componentOpened();
+        setName(Localization.getString("Logger"));
+        setToolTipText(Localization.getString("logger"));
+        backend.addUGSEventListener(this);
+        backend.addMessageListener(this);
+        
         try {
         
             File saveDir = new File(dirFile);
 
             if (saveDir.exists()) {
-                System.out.println("Found Init File");
                 Scanner saveScanner = new Scanner(saveDir);
 
                 while (saveScanner.hasNextLine()) {
@@ -274,7 +410,6 @@ public final class LoggerTopComponent extends TopComponent {
                 saveScanner.close();
             }
             else {
-                System.out.println("No Init File");
                 writeRoot();
             }
         }
@@ -290,7 +425,9 @@ public final class LoggerTopComponent extends TopComponent {
 
     @Override
     public void componentClosed() {
-        // TODO add custom code on component closing
+        // UGS overrides
+        super.componentClosed();
+        backend.removeUGSEventListener(this);
     }
 
     void writeProperties(java.util.Properties p) {
@@ -314,7 +451,6 @@ public final class LoggerTopComponent extends TopComponent {
             FileWriter rootWriter = new FileWriter(dirFile);
             rootWriter.write(directoryString);
             rootWriter.close();
-            System.out.println("Successfully wrote to the file.");
         }
         catch (IOException e) {
             System.out.println("ERROR WRITING ROOT DIRECTORY!!!");
