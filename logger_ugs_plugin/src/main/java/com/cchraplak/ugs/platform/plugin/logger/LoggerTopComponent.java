@@ -82,7 +82,7 @@ public final class LoggerTopComponent extends TopComponent implements MessageLis
     }
     
     private String directoryString = FileSystemView.getFileSystemView().getHomeDirectory().toString();
-    private final String dirFile = "root_directory.txt";
+    private final String dirFile = "root_directory.csv";
     
     private FileWriter positionWriter = null;
     private FileWriter gcodeWriter = null;
@@ -291,8 +291,8 @@ public final class LoggerTopComponent extends TopComponent implements MessageLis
         
         try {
             if (positionWriter == null && gcodeWriter == null && numAxis != 0) {
-                positionWriter = new FileWriter(directoryString + "/position_" + time + ".txt");
-                gcodeWriter = new FileWriter(directoryString + "/gcode_" + time + ".txt");
+                positionWriter = new FileWriter(directoryString + "/position_" + time + ".csv");
+                gcodeWriter = new FileWriter(directoryString + "/gcode_" + time + ".csv");
                 
                 String positionHeader = "Time,";
                 String axis[] = {"X", "Y", "Z", "A", "B", "C"};
