@@ -4,9 +4,9 @@
     <main-window>
   <joined-properties
    x="96"
-   y="64"
+   y="66"
    width="1728"
-   height="951"
+   height="948"
    relative-x="0.0"
    relative-y="0.0"
    relative-width="0.0"
@@ -38,7 +38,7 @@
   <path orientation="horizontal" number="40" weight="0.7" />
   <path orientation="vertical" number="40" weight="0.5" />
   </constraints>
-  <bounds x="633" y="253" width="806" height="465" />
+  <bounds x="633" y="252" width="806" height="463" />
     </editor-area>
     <screen width="1920" height="1080"/>
     <toolbar configuration="Standard" preferred-icon-size="24"/>

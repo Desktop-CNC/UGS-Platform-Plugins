@@ -26,23 +26,9 @@ public class TableRow {
     private String description = "";
     private Integer pocket;
     private Boolean current = false;
-    private Float xOff;
-    private Float yOff;
-    private Float zOff;
-    private Float cOff;
-    private Float radius;
 
-    public TableRow(Integer id, Float xOff, Float yOff, Float zOff, Float cOff, Float radius) {
+    public TableRow(Integer id) {
         this.id = id;
-        this.xOff = xOff;
-        this.yOff = yOff;
-        this.zOff = zOff;
-        this.cOff = cOff;
-        this.radius = radius;
-    }
-
-    public TableRow(Integer id, Float xOff, Float yOff, Float zOff, Float radius) {
-        this(id, xOff, yOff, zOff, null, radius);
     }
 
     public Integer getID() {
@@ -79,47 +65,5 @@ public class TableRow {
 
     public void setCurrent(Boolean current) {
         this.current = current;
-    }
-    
-    public Float getXOffset() {
-        return this.xOff;
-    }
-    
-    public void setXOffset(Float xOff) {
-        this.xOff = xOff;
-    }
-    
-    public Float getYOffset() {
-        return this.yOff;
-    }
-    
-    public void setYOffset(Float yOff) {
-        this.yOff = yOff;
-    }
-    
-    public Float getZOffset() {
-        return this.zOff;
-    }
-    
-    public void setZOffset(Float zOff) {
-        this.zOff = zOff;
-    }
-    
-    public Float getCOffset() {
-        return this.cOff;
-    }
-    
-    public void setCOffset(Float cOff) {
-        if (this.cOff != null) {
-            this.cOff = cOff;
-        }
-    }
-
-    public Float getRadius() {
-        return this.radius;
-    }
-
-    public void setRadius(Float radius) {
-        this.radius = radius;
     }
 }

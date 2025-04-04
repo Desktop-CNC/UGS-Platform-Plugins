@@ -79,4 +79,5 @@
             <version>2.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
+    <name>Desktop CNC Tool Changer</name>
 </project>

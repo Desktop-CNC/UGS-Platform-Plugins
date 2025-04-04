@@ -70,6 +70,8 @@ public final class ToolTableTopComponent extends TopComponent implements Message
     private boolean listenToConsole = false;
     private ArrayList<TableRow> tableRows = new ArrayList<TableRow>();
     private boolean retrievedTable = false;
+    private boolean retrievedPockets = false;
+    private int okCount = 0;
     
     //@Override;
     public void UGSEvent(UGSEvent event) {
@@ -119,6 +121,8 @@ public final class ToolTableTopComponent extends TopComponent implements Message
         removeTool = new javax.swing.JButton();
         resetTable = new javax.swing.JButton();
         toolLabel = new javax.swing.JLabel();
+        openCover = new javax.swing.JButton();
+        closeCover = new javax.swing.JButton();
 
         org.openide.awt.Mnemonics.setLocalizedText(jMenu1, org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.jMenu1.text")); // NOI18N
         jMenuBar1.add(jMenu1);
@@ -137,14 +141,14 @@ public final class ToolTableTopComponent extends TopComponent implements Message
 
             },
             new String [] {
-                "ID", "Name", "Description", "Pocket", "Current", "X Offset", "Y Offset", "Z Offset", "C Offset", "Radius"
+                "ID", "Name", "Description", "Pocket", "Current"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, true, true, true
+                false, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -187,11 +191,6 @@ public final class ToolTableTopComponent extends TopComponent implements Message
             toolTable.getColumnModel().getColumn(2).setHeaderValue(org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.toolTable.columnModel.title2_1")); // NOI18N
             toolTable.getColumnModel().getColumn(3).setHeaderValue(org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.jTable1.columnModel.title4_1")); // NOI18N
             toolTable.getColumnModel().getColumn(4).setHeaderValue(org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.jTable1.columnModel.title3_1")); // NOI18N
-            toolTable.getColumnModel().getColumn(5).setHeaderValue(org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.toolTable.columnModel.title6")); // NOI18N
-            toolTable.getColumnModel().getColumn(6).setHeaderValue(org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.toolTable.columnModel.title7")); // NOI18N
-            toolTable.getColumnModel().getColumn(7).setHeaderValue(org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.toolTable.columnModel.title8")); // NOI18N
-            toolTable.getColumnModel().getColumn(8).setHeaderValue(org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.toolTable.columnModel.title5")); // NOI18N
-            toolTable.getColumnModel().getColumn(9).setHeaderValue(org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.toolTable.columnModel.title9")); // NOI18N
         }
 
         org.openide.awt.Mnemonics.setLocalizedText(loadTool, org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.loadTool.text")); // NOI18N
@@ -218,6 +217,20 @@ public final class ToolTableTopComponent extends TopComponent implements Message
         org.openide.awt.Mnemonics.setLocalizedText(toolLabel, org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.toolLabel.text")); // NOI18N
         toolLabel.setPreferredSize(new java.awt.Dimension(84, 22));
 
+        org.openide.awt.Mnemonics.setLocalizedText(openCover, org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.openCover.text")); // NOI18N
+        openCover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openCoverActionPerformed(evt);
+            }
+        });
+
+        org.openide.awt.Mnemonics.setLocalizedText(closeCover, org.openide.util.NbBundle.getMessage(ToolTableTopComponent.class, "ToolTableTopComponent.closeCover.text")); // NOI18N
+        closeCover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeCoverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -227,27 +240,37 @@ public final class ToolTableTopComponent extends TopComponent implements Message
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(resetTable)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(toolLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(loadTool)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(removeTool)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(openCover)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(closeCover)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(resetTable))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(removeTool)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(loadTool)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(toolLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(resetTable)
-                    .addComponent(loadTool)
                     .addComponent(removeTool)
+                    .addComponent(loadTool)
                     .addComponent(toolLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(openCover)
+                    .addComponent(closeCover)
+                    .addComponent(resetTable))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -260,23 +283,9 @@ public final class ToolTableTopComponent extends TopComponent implements Message
     private void loadToolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadToolActionPerformed
         // TODO add your handling code here:
         try {
-            int row = toolTable.getSelectedRow();
-            String[] commands = {
-                    "M05",
-                    "G90 Z" + Float.toString(safeZ),
-                    "G90 X" + Float.toString(pockets[row][0]) + " Y" + Float.toString(pockets[row][1]),
-                    "G90 Z" + Float.toString(freeZ),
-                    "M03 S1500",
-                    "G90 Z" + Float.toString(unloadZ),
-                    "G90 Z" + Float.toString(freeZ),
-                    "G90 Z" + Float.toString(unloadZ),
-                    "G90 Z" + Float.toString(safeZ),
-                    "M05"};
-
-
-            for (int i = 0; i < commands.length; i++) {
-                backend.sendGcodeCommand(commands[i]);
-            }
+            int row = toolTable.getSelectedRow() + 1;
+            backend.sendGcodeCommand("T" + Integer.toString(row));
+            backend.sendGcodeCommand("M06");
         }
         catch (Exception e) {
             System.out.println("\n\n===================================Error loading tool===================================\n\n");
@@ -286,19 +295,7 @@ public final class ToolTableTopComponent extends TopComponent implements Message
     private void removeToolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeToolActionPerformed
         // TODO add your handling code here:
         try {
-            int row = toolTable.getSelectedRow();
-            String[] commands = {
-                    "M05",
-                    "G90 Z" + Float.toString(safeZ),
-                    "G90 X" + Float.toString(pockets[row][0]) + " Y" + Float.toString(pockets[row][1]),
-                    "G90 Z" + Float.toString(freeZ),
-                    "M04 S1500",
-                    "G90 Z" + Float.toString(unloadZ),
-                    "G90 Z" + Float.toString(safeZ),
-                    "M05"};
-            for (int i = 0; i < commands.length; i++) {
-                backend.sendGcodeCommand(commands[i]);
-            }
+            backend.sendGcodeCommand("M101");
         }
         catch (Exception e) {
             System.out.println("\n\n===================================Error removing tool===================================\n\n");
@@ -312,6 +309,8 @@ public final class ToolTableTopComponent extends TopComponent implements Message
         
         try {
             backend.sendGcodeCommand("$#");
+            backend.sendGcodeCommand("$P");
+            okCount = 0;
             System.out.println("Start of message");
         }
         catch (Exception e) {
@@ -319,6 +318,7 @@ public final class ToolTableTopComponent extends TopComponent implements Message
         }
         
         listenToConsole = true;
+        okCount = 0;
     }//GEN-LAST:event_resetTableActionPerformed
 
     private void toolTableAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_toolTableAncestorAdded
@@ -350,7 +350,30 @@ public final class ToolTableTopComponent extends TopComponent implements Message
         toolLabel.setText("Current Tool ID: " + Integer.toString(toolTable.getSelectedRow() + 1));
     }//GEN-LAST:event_toolTableMouseClicked
 
+    private void openCoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openCoverActionPerformed
+        // TODO add your handling code here:
+        
+        try {
+            backend.sendGcodeCommand("M103 P1");
+        }
+        catch (Exception e) {
+            System.out.println("Unable to open cover");
+        }
+    }//GEN-LAST:event_openCoverActionPerformed
+
+    private void closeCoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeCoverActionPerformed
+        // TODO add your handling code here:
+        
+        try {
+            backend.sendGcodeCommand("M103 P0");
+        }
+        catch (Exception e) {
+            System.out.println("Unable to close cover");
+        }
+    }//GEN-LAST:event_closeCoverActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton closeCover;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -359,6 +382,7 @@ public final class ToolTableTopComponent extends TopComponent implements Message
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton loadTool;
+    private javax.swing.JButton openCover;
     private javax.swing.JButton removeTool;
     private javax.swing.JButton resetTable;
     private javax.swing.JLabel toolLabel;
@@ -378,10 +402,13 @@ public final class ToolTableTopComponent extends TopComponent implements Message
         removeTable();
         
         try {
-            if (!retrievedTable) {
+            if (!retrievedTable || !retrievedPockets) {
                 listenToConsole = true;
+                okCount = 0;
                 backend.sendGcodeCommand("$#");
+                backend.sendGcodeCommand("$P");
                 System.out.println("Startup Retrieve");
+                resetTable(true);
             }
         }
         catch (Exception e) {
@@ -395,6 +422,7 @@ public final class ToolTableTopComponent extends TopComponent implements Message
         super.componentClosed();
         backend.removeUGSEventListener(this);
         retrievedTable = false;
+        retrievedPockets = false;
     }
 
     void writeProperties(java.util.Properties p) {
@@ -409,15 +437,14 @@ public final class ToolTableTopComponent extends TopComponent implements Message
         // TODO read your settings according to their version
     }
     
-    private void addRow(int id, Float[] offsets, Float radius) {
+    private void addRow(int id) {
 
         try {
             DefaultTableModel model = (DefaultTableModel) toolTable.getModel();
 
-            //Object[] comp = { id, "name", "description", null, null,  offsets[0], offsets[1], offsets[2], offsets[3], radius, new ChangeButton(id, true).getButton(), new ChangeButton(id, false).getButton()};
-            Object[] comp = { id, "name", "description", null, null,  offsets[0], offsets[1], offsets[2], offsets[3], radius};
+            Object[] comp = { id, "name", "description", null, null};
             model.addRow(comp);
-            tableRows.add(new TableRow(id, offsets[0], offsets[1], offsets[2], offsets[3], radius));
+            tableRows.add(new TableRow(id));
         }
         catch (Exception e) {
             System.out.println("Unable to parse variables!!!");
@@ -433,29 +460,100 @@ public final class ToolTableTopComponent extends TopComponent implements Message
             return;
         }
         
-        int id = tableRows.get(row).getID();
+        DefaultTableModel model = (DefaultTableModel) toolTable.getModel();
+        
         switch (column) {
             case 1:
                 if (!Objects.equals(tableRows.get(row).getName(), newValue)) {
                     tableRows.get(row).setName(newValue);
+                    model.setValueAt(newValue, row, 1);
                 }
             break;
             case 2:
                 if (!Objects.equals(tableRows.get(row).getDescription(), newValue)) {
                     tableRows.get(row).setDescription(newValue);
+                    model.setValueAt(newValue, row, 2);
                 }
             break;
             case 3:
-                Integer newPocket = Integer.valueOf(newValue);
+                Integer newPocket = null;
+                boolean nullNumber = false;
+                try {
+                    newPocket = Integer.valueOf(newValue);
+                }
+                catch (NumberFormatException e) {
+                    nullNumber = true;
+                }
+                
                 if (!Objects.equals(tableRows.get(row).getPocket(), newPocket)) {
+                    
+                    Integer prevVal = tableRows.get(row).getPocket();
+
                     tableRows.get(row).setPocket(newPocket);
+
+                    model.setValueAt(newPocket, row, 3);
+
+                    if (nullNumber) {
+                        backend.sendGcodeCommand("M102 P" + Integer.toString(prevVal) + " Q" + Integer.toString(0));
+                    }
+                    else if (newPocket == 0) {
+                        backend.sendGcodeCommand("M102 P" + Integer.toString(prevVal) + " Q" + Integer.toString(0));
+                    }
+                    else {
+                        backend.sendGcodeCommand("M102 P" + Integer.toString(newPocket) + " Q" + Integer.toString(row+1));
+                    }
+                    
+                    resetTable(true);
+                    
                 }
             break;
             case 4:
+                
+                System.out.println("SPINDLE!");
+                
+                Integer current = Integer.valueOf(newValue);
+                
+                System.out.println("Spindle val: " + Integer.toString(current));
+                
+                boolean update = false;
+                
+                if (current == 0) {
+                    for (int i = 0; i < tableRows.size(); i++) {
+                        if (tableRows.get(i).getCurrent()) {
+                            tableRows.get(i).setCurrent(false);
+                            model.setValueAt(false, row, 4);
+                            backend.sendGcodeCommand("M102 P" + Integer.toString(0) + " Q" + Integer.toString(0));
+                            resetTable(true);
+                            return;
+                        }
+                    }
+                }
+                else {
+                    if (tableRows.get(current-1).getCurrent()) {
+                        update = true;
+                    }
+                }
+                
+                boolean prevVal = tableRows.get(current-1).getCurrent();
+                
+                for (int i = 0; i < tableRows.size(); i++) {
+                    tableRows.get(i).setCurrent(false);
+                    model.setValueAt(false, i, 4);
+                }
+                
+                if (current > 0) {
+                    tableRows.get(current).setCurrent(true);
+                    model.setValueAt(true, row, 4);
+                }
+                else {
+                    
+                }
+                
+                backend.sendGcodeCommand("M102 P" + Integer.toString(0) + " Q" + Integer.toString(current));
+                
+                resetTable(true);
 
-                DefaultTableModel model = (DefaultTableModel) toolTable.getModel();
-
-                boolean loaded = false;
+                /*boolean loaded = false;
 
                 boolean current = Boolean.valueOf(newValue);
 
@@ -471,54 +569,36 @@ public final class ToolTableTopComponent extends TopComponent implements Message
                 if (loaded) {
                     System.out.println("Another tool in place");
                 }
-                else {
+                else if (!listenToConsole) {
                     // TODO: add code for getting current tool
                     backend.sendGcodeCommand("T" + Integer.toString(id));
                     tableRows.get(row).setCurrent(current);
                     model.setValueAt(newValue, row, 4);
-                }
+                }*/
 
-            break;
-            case 5:
-                Float newX = Float.valueOf(newValue);
-                if (!Objects.equals(tableRows.get(row).getXOffset(), newX)) {
-                    backend.sendGcodeCommand("G10 L1 P" + Integer.toString(id) + " X" + newValue);
-                    tableRows.get(row).setXOffset(newX);
-                }
-            break;
-            case 6:
-                Float newY = Float.valueOf(newValue);
-                if (!Objects.equals(tableRows.get(row).getYOffset(), newY)) {
-                    backend.sendGcodeCommand("G10 L1 P" + Integer.toString(id) + " Y" + newValue);
-                    tableRows.get(row).setYOffset(newY);
-                }
-            break;
-            case 7:
-                Float newZ = Float.valueOf(newValue);
-                if (!Objects.equals(tableRows.get(row).getZOffset(), newZ)) {
-                    backend.sendGcodeCommand("G10 L1 P" + Integer.toString(id) + " Z" + newValue);
-                    tableRows.get(row).setZOffset(newZ);
-                }
-            break;
-            case 8:
-                Float newA = Float.valueOf(newValue);
-                if (!Objects.equals(tableRows.get(row).getCOffset(), newA)) {
-                    backend.sendGcodeCommand("G10 L1 P" + Integer.toString(id) + " A" + newValue);
-                    tableRows.get(row).setCOffset(newA);
-                }
-                
-            break;
-            case 9:
-                Float newR = Float.valueOf(newValue);
-                if (!Objects.equals(tableRows.get(row).getRadius(), newR)) {
-                    //backend.sendGcodeCommand("G10 L1 P" + Integer.toString(id) + " R" + newValue);
-                    tableRows.get(row).setRadius(newR);
-                }
             break;
             default:
                 System.out.println("No value edited!");
             break;
         }
+    }
+    
+    private void resetTable(boolean sendCommands) {
+        
+        try {
+            listenToConsole = true;
+            okCount = 0;
+            if (sendCommands) {
+                backend.sendGcodeCommand("$#");
+                backend.sendGcodeCommand("$P");
+            }
+            retrievedTable = true;
+            retrievedPockets = true;
+        }
+        catch (Exception e) {
+            System.out.println("Failed connected getting table");
+        }
+        
     }
 
     @Override
@@ -526,59 +606,29 @@ public final class ToolTableTopComponent extends TopComponent implements Message
         
         if (!retrievedTable) {
             if (message.contains("Connected")) {
-                try {
-                    listenToConsole = true;
-                    backend.sendGcodeCommand("$#");
-                    System.out.println("connected getting table");
-                    retrievedTable = true;
-                }
-                catch (Exception e) {
-                    System.out.println("Failed connected getting table");
-                }
+                System.out.println("connected getting table");
+                resetTable(true);
             }
             else if (message.contains("$#")) {
-                try {
-                    listenToConsole = true;
-                    System.out.println("Auto getting table");
-                    retrievedTable = true;
-                }
-                catch (Exception e) {
-                    System.out.println("Failed auto getting table");
-                }
+                System.out.println("Auto getting table");
+                resetTable(false);
             }
         }
         
         if (listenToConsole) {
             
-            if (message.contains("T:")) {
+            if (message.contains("[T:")) {
                 int start = message.indexOf(':');
                 int middle = message.indexOf('|');
-                int end = message.lastIndexOf('|');
-                
-                String[] offsetStrings = message.substring(middle + 1, end).split(",");
-                Float[] offsets = new Float[4];
-                offsets[3] = null;
-                for (int i = 0; i < offsetStrings.length; i++) {
-                    offsets[i] = Float.valueOf(offsetStrings[i]);
-                }
                 
                 String idSring = message.substring(start + 1, middle);
                 Integer id = Integer.valueOf(idSring);
-                String radiusString = message.substring(end + 1, message.length() - 2);
-                Float radius = Float.valueOf(radiusString);
                 
                 
                 for (int i = 0; i < tableRows.size(); i++) {
                     if (Objects.equals(tableRows.get(i).getID(), id)) {
                         try {
                             editRow(id, 0, idSring);
-                            editRow(id, 5, offsetStrings[0]);
-                            editRow(id, 6, offsetStrings[1]);
-                            editRow(id, 7, offsetStrings[2]);
-                            if (offsetStrings.length > 3) {
-                                editRow(id, 8, offsetStrings[3]);
-                            }
-                            editRow(id, 9, radiusString);
                             return;
                         }
                         catch (Exception e) {
@@ -586,14 +636,44 @@ public final class ToolTableTopComponent extends TopComponent implements Message
                         }
                     }
                 }
-                addRow(id, offsets, radius);
+                addRow(id);
             }
-            else if (message.contains("TLO")) {
+            else if (message.contains("[SP|")) {
+                int start = message.indexOf('|');
+                int end = message.indexOf(']');
+                String spindleTool = message.substring(start + 1, end);
+                Integer id = Integer.valueOf(spindleTool);
                 
+                /*try {
+                    editRow(id, 4, spindleTool);
+                }
+                catch (Exception e) {
+                    System.out.println("Unable to edit row from GCode!");
+                }*/
+            }
+            else if (message.contains("[P:")) {
+                int start = message.indexOf(':');
+                int middle = message.indexOf('|');
+                int end = message.indexOf(']');
+                
+                String pocket = message.substring(start + 1, middle);
+                int pocketID = Integer.valueOf(pocket);
+                String tool = message.substring(middle + 1, end);
+                int toolID = Integer.valueOf(tool);
+                
+                try {
+                    editRow(toolID - 1, 3, pocket);
+                }
+                catch (Exception e) {
+                    System.out.println("Unable to edit row from GCode!");
+                }
             }
             else if (message.contains("ok")) {
-                System.out.println("Message Ended!");
-                listenToConsole = false;
+                okCount++;
+                if (okCount == 2) {
+                    System.out.println("Message Ended!");
+                    listenToConsole = false;
+                }
             }
         }
     }
@@ -601,6 +681,7 @@ public final class ToolTableTopComponent extends TopComponent implements Message
     public void removeTable() {
         
         retrievedTable = false;
+        retrievedPockets = false;
         
         tableRows.removeAll(tableRows);
         

@@ -17,7 +17,7 @@
         <attr name="WinSys-TCRef-Order" stringvalue="navigatorTC/breakpointsView"/>
     </fileobject>
     <fileobject name="output">
-        <attr name="WinSys-TCRef-Order" stringvalue="watchesView/NotificationCenterTopComponent/localsView/resultsView/callstackView/sources/sessionsView/threadsView/bookmarks/versioning_output/search-results/gsf-testrunner-results/refactoring-preview/find-usages/TerminalContainerTopComponent/output/svnversioning/hgversioningTC/GitVersioning/GitRepositories/TaskListTopComponent/ToolActionsTopComponent"/>
+        <attr name="WinSys-TCRef-Order" stringvalue="watchesView/NotificationCenterTopComponent/localsView/resultsView/callstackView/sources/sessionsView/threadsView/bookmarks/versioning_output/search-results/gsf-testrunner-results/refactoring-preview/find-usages/TerminalContainerTopComponent/output/svnversioning/hgversioningTC/GitVersioning/GitRepositories/TaskListTopComponent"/>
     </fileobject>
     <fileobject name="properties">
         <attr name="WinSys-TCRef-Order" stringvalue="CssStylesTC/properties"/>
