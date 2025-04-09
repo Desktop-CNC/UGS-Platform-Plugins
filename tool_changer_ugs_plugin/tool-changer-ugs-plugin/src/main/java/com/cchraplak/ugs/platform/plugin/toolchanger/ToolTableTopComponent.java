@@ -72,6 +72,7 @@ public final class ToolTableTopComponent extends TopComponent implements Message
     private boolean retrievedTable = false;
     private boolean retrievedPockets = false;
     private int okCount = 0;
+    private int pocketCount = 0;
     
     //@Override;
     public void UGSEvent(UGSEvent event) {
@@ -309,7 +310,7 @@ public final class ToolTableTopComponent extends TopComponent implements Message
         
         try {
             backend.sendGcodeCommand("$#");
-            backend.sendGcodeCommand("$P");
+            //backend.sendGcodeCommand("$P");
             okCount = 0;
             System.out.println("Start of message");
         }
@@ -334,7 +335,7 @@ public final class ToolTableTopComponent extends TopComponent implements Message
         
         try {
             String newVal = String.valueOf(model.getValueAt(row, column));
-            editRow(row, column, newVal);
+            editRow(row, column, newVal, true);
         }
         catch (Exception e) {
             System.out.println("Unable to edit value");
@@ -449,17 +450,11 @@ public final class ToolTableTopComponent extends TopComponent implements Message
         }
     }
     
-    private void editRow(int row, int column, String newValue) throws Exception {
-        
-        System.out.println("Row: " + Integer.toString(row));
-        System.out.println("Column: " + Integer.toString(column));
-        System.out.println("Value: " + newValue);
-        
+    private void editRow(int row, int column, String newValue, boolean sendGCode) throws Exception {
         
         if (row >= toolTable.getRowCount() || row < 0 || column < 0 || column >= toolTable.getColumnCount()) {
             if (column == 3 && row == -1) {
                 // setting pocket empty
-                System.out.println("Empty Pocket!");
                 
                 Integer pocket = Integer.valueOf(newValue);
                 
@@ -475,27 +470,6 @@ public final class ToolTableTopComponent extends TopComponent implements Message
                     }
                 }
                 if (!modified) {
-                    System.out.println("Not modified pocket!");
-                    return;
-                }
-            }
-            else if (column == 4 && row == -1) {
-                // setting pocket empty
-                System.out.println("Empty Spindle!");
-                
-                boolean modified = false;
-                
-                for (int i = 0; i < toolTable.getRowCount(); i++) {
-                    
-                    if (tableRows.get(i).getCurrent()) {
-                        row = i;
-                        newValue = null;
-                        i = toolTable.getRowCount();
-                        modified = true;
-                    }
-                }
-                if (!modified) {
-                    System.out.println("Not modified spindle!");
                     return;
                 }
             }
@@ -511,21 +485,18 @@ public final class ToolTableTopComponent extends TopComponent implements Message
         
         switch (column) {
             case 1 -> {
-                System.out.println("Old Name: " + tableRows.get(row).getName());
                 if (!Objects.equals(tableRows.get(row).getName(), newValue)) {
                     tableRows.get(row).setName(newValue);
-                    model.setValueAt(newValue, row, 1);
+                    model.setValueAt(newValue, row, column);
                 }
             }
             case 2 -> {
-                System.out.println("Old Description: " + tableRows.get(row).getDescription());
                 if (!Objects.equals(tableRows.get(row).getDescription(), newValue)) {
                     tableRows.get(row).setDescription(newValue);
-                    model.setValueAt(newValue, row, 2);
+                    model.setValueAt(newValue, row, column);
                 }
             }
             case 3 -> {
-                System.out.println("Old Pocket: " + tableRows.get(row).getPocket());
                 
                 Integer newPocket = null;
                 boolean nullNumber = false;
@@ -538,7 +509,7 @@ public final class ToolTableTopComponent extends TopComponent implements Message
                 
                 for (int i = 0; i < tableRows.size(); i++) {
                     if (i != row && tableRows.get(i).getPocket() != null && tableRows.get(i).getPocket() == newPocket) {
-                        model.setValueAt(null, row, 3);
+                        model.setValueAt(null, row, column);
                         return;
                     }
                 }
@@ -548,25 +519,27 @@ public final class ToolTableTopComponent extends TopComponent implements Message
                     Integer prevVal = tableRows.get(row).getPocket();
 
                     tableRows.get(row).setPocket(newPocket);
-                    model.setValueAt(newPocket, row, 3);
-
-                    if (nullNumber)
-                        backend.sendGcodeCommand("M102 P" + Integer.toString(prevVal) + " Q" + Integer.toString(0));
-                    else if (newPocket == 0)
-                        backend.sendGcodeCommand("M102 P" + Integer.toString(prevVal) + " Q" + Integer.toString(0));
-                    else
-                        backend.sendGcodeCommand("M102 P" + Integer.toString(newPocket) + " Q" + Integer.toString(row+1));
+                    model.setValueAt(newPocket, row, column);
                     
-                    resetTable(false, true);
+                    if (sendGCode) {
+                        System.out.println("\n\n==================False Pocket==================\n\n");
+                        if (nullNumber)
+                            backend.sendGcodeCommand("M102 P" + Integer.toString(prevVal) + " Q0");
+                        else if (newPocket == 0)
+                            backend.sendGcodeCommand("M102 P" + Integer.toString(prevVal) + " Q0");
+                        else
+                            backend.sendGcodeCommand("M102 P" + Integer.toString(newPocket) + " Q" + Integer.toString(row+1));
+
+                        resetTable(false, false);
+                    }
                 }
             }
             case 4 -> {
-                System.out.println("Old Spindle: " + tableRows.get(row).getCurrent());
 
-                Integer newSpindle = null;
+                Boolean newSpindle = null;
                 boolean nullNumber = false;
                 try {
-                    newSpindle = Integer.valueOf(newValue);
+                    newSpindle = Boolean.valueOf(newValue);
                 }
                 catch (NumberFormatException e) {
                     nullNumber = true;
@@ -574,61 +547,39 @@ public final class ToolTableTopComponent extends TopComponent implements Message
                 
                 if (!Objects.equals(tableRows.get(row).getCurrent(), newSpindle)) {
                     
-                }
-                
-                /*Integer current = Integer.valueOf(newValue);
-                System.out.println("Spindle val: " + Integer.toString(current));
-                boolean update = false;
-                if (current == 0) {
                     for (int i = 0; i < tableRows.size(); i++) {
-                        if (tableRows.get(i).getCurrent()) {
-                            tableRows.get(i).setCurrent(false);
-                            model.setValueAt(false, row, 4);
-                            backend.sendGcodeCommand("M102 P" + Integer.toString(0) + " Q" + Integer.toString(0));
-                            //resetTable(true);
-                            return;
+                        if (i != row) {
+                            if (tableRows.get(i).getCurrent()) {
+                                tableRows.get(i).setCurrent(false);
+                                model.setValueAt(false, i, column);
+                            }
+                            
                         }
                     }
-                }
-                else {
-                    if (tableRows.get(current-1).getCurrent()) {
-                        update = true;
+
+                    tableRows.get(row).setCurrent(newSpindle);
+                    model.setValueAt(newSpindle, row, column);
+                    
+                    if (sendGCode) {
+                        System.out.println("\n\n==================False Change==================\n\n");
+                        if (nullNumber) {
+                            System.out.println("NULL SPINDLE");
+                            backend.sendGcodeCommand("M102 P0 Q0");
+                        }
+                        else if (newSpindle) {
+                            System.out.println("SET SPINDLE");
+                            backend.sendGcodeCommand("M102 P0 Q" + Integer.toString(row+1));
+                        }
+                        else {
+                            System.out.println("UNLOAD SPINDLE");
+                            backend.sendGcodeCommand("M102 P0 Q0");
+                        }
+
+                        resetTable(false, false);
                     }
-                }
-                boolean prevVal = tableRows.get(current-1).getCurrent();
-                for (int i = 0; i < tableRows.size(); i++) {
-                    tableRows.get(i).setCurrent(false);
-                    model.setValueAt(false, i, 4);
-                }
-                if (current > 0) {
-                    tableRows.get(current).setCurrent(true);
-                    model.setValueAt(true, row, 4);
-                }
-                else {
+
                     
                 }
-                backend.sendGcodeCommand("M102 P" + Integer.toString(0) + " Q" + Integer.toString(current));
-                */
-                //resetTable(true);
-                /*boolean loaded = false;
-                boolean current = Boolean.valueOf(newValue);
-                if (!current) {
-                tableRows.get(row).setCurrent(false);
-                }
-                for (int j = 0; j < tableRows.size(); j++) {
-                if (tableRows.get(j).getCurrent()) {
-                loaded = true;
-                }
-                }
-                if (loaded) {
-                System.out.println("Another tool in place");
-                }
-                else if (!listenToConsole) {
-                // TODO: add code for getting current tool
-                backend.sendGcodeCommand("T" + Integer.toString(id));
-                tableRows.get(row).setCurrent(current);
-                model.setValueAt(newValue, row, 4);
-                }*/
             }
             default -> System.out.println("No value edited!");
         }
@@ -658,14 +609,16 @@ public final class ToolTableTopComponent extends TopComponent implements Message
     public void onMessage(MessageType messageType, String message) {
         
         if (!retrievedTable) {
-            if (message.contains("Connected")) {
-                System.out.println("connected getting table");
-                resetTable(true, true);
-            }
-            else if (message.contains("$#")) {
+            if (message.contains("$#")) {
                 System.out.println("Auto getting table");
                 resetTable(false, true);
             }
+        }
+        
+        if (message.contains("?")) {
+            System.out.println("connected getting table");
+            removeTable();
+            resetTable(true, true);
         }
         
         if (listenToConsole) {
@@ -681,11 +634,11 @@ public final class ToolTableTopComponent extends TopComponent implements Message
                 for (int i = 0; i < tableRows.size(); i++) {
                     if (Objects.equals(tableRows.get(i).getID(), id)) {
                         try {
-                            editRow(id, 0, idSring);
+                            editRow(id, 0, idSring, false);
                             return;
                         }
                         catch (Exception e) {
-                            System.out.println("Unable to edit row from GCode!");
+                            System.out.println("Unable to edit tool row from GCode!");
                         }
                     }
                 }
@@ -704,14 +657,32 @@ public final class ToolTableTopComponent extends TopComponent implements Message
             int start = message.indexOf('|');
             int end = message.indexOf(']');
             String spindleTool = message.substring(start + 1, end);
-            Integer id = Integer.valueOf(spindleTool);
+            Integer id = Integer.valueOf(spindleTool) - 1;
+            
+            if (id != -1) {
+                spindleTool = Boolean.toString(true);
+            }
+            else {
+                for (int i = 0; i < tableRows.size(); i++) {
+                    if (tableRows.get(i).getCurrent()) {
+                        id = i;
+                        spindleTool = Boolean.toString(false);
+                    }
+                }
+            }
 
-            /*try {
-                editRow(id - 1, 4, spindleTool);
+            try {
+                if (id != -1) {
+                    System.out.println("GCode Edit");
+                    editRow(id, 4, spindleTool, false);
+                }
+                else {
+                    System.out.println("Invalid Statement");
+                }
             }
             catch (Exception e) {
-                System.out.println("Unable to edit row from GCode!");
-            }*/
+                System.out.println("Unable to edit spindle from GCode!");
+            }
         }
         else if (message.contains("[P:")) {
             int start = message.indexOf(':');
@@ -722,12 +693,16 @@ public final class ToolTableTopComponent extends TopComponent implements Message
             int pocketID = Integer.valueOf(pocket);
             String tool = message.substring(middle + 1, end);
             int toolID = Integer.valueOf(tool);
+            
+            if (pocketID > pocketCount) {
+                pocketCount = pocketID;
+            }
 
             try {
-                editRow(toolID - 1, 3, pocket);
+                editRow(toolID - 1, 3, pocket, false);
             }
             catch (Exception e) {
-                System.out.println("Unable to edit row from GCode!");
+                System.out.println("Unable to edit pocket from GCode!");
             }
         }
     }
@@ -736,6 +711,8 @@ public final class ToolTableTopComponent extends TopComponent implements Message
         
         retrievedTable = false;
         retrievedPockets = false;
+        
+        pocketCount = 0;
         
         tableRows.removeAll(tableRows);
         

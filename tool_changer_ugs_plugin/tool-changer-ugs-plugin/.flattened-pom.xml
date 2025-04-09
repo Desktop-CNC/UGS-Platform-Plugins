@@ -9,7 +9,7 @@
   </parent>
   <groupId>com.cchraplak</groupId>
   <artifactId>ugs-platform-plugin-toolchanger</artifactId>
-  <version>0.1</version>
+  <version>1.0</version>
   <packaging>nbm</packaging>
   <name>Desktop CNC Tool Changer</name>
   <description>Custom tool changer for Desktop CNC Mill</description>
