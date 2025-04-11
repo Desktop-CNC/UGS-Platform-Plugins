@@ -288,6 +288,7 @@ public final class LoggerTopComponent extends TopComponent implements MessageLis
         
         String time = LocalTime.now().toString();
         time = time.substring(0, time.length() - 6);
+        time = time.replace(":", ".");
         
         try {
             if (positionWriter == null && gcodeWriter == null && numAxis != 0) {
