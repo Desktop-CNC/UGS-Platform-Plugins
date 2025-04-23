@@ -125,11 +125,15 @@ public final class LoggerTopComponent extends TopComponent implements MessageLis
             else if (message.contains("<")) {
                 String inputs[] = message.split("\\|");
                 
+                boolean containsLine = false;
+                
                 String outputs[] = new String[2*numAxis + 3];
                 for (int i = 0; i < inputs.length; i++) {
                     String input = inputs[i];
                     if (input.contains("MPos:")) {
                         input = input.replace("MPos:", "");
+                        input = input.replace(">", "");
+                        input = input.replace("\n", "");
                         String filtered[] = input.split(",");
                         for (int j = 0; j < filtered.length; j++) {
                             float value = Float.parseFloat(filtered[j]);
@@ -139,10 +143,15 @@ public final class LoggerTopComponent extends TopComponent implements MessageLis
                     }
                     else if (input.contains("Ln:")) {
                         input = input.replace("Ln:", "");
+                        input = input.replace(">", "");
+                        input = input.replace("\n", "");
                         outputs[2*numAxis + 2] = input;
+                        containsLine = true;
                     }
                     else if (input.contains("FS:")) {
                         input = input.replace("FS:", "");
+                        input = input.replace(">", "");
+                        input = input.replace("\n", "");
                         String filtered[] = input.split(",");
                         for (int j = 0; j < filtered.length; j++) {
                             outputs[j + 2*numAxis] = filtered[j];
@@ -150,6 +159,8 @@ public final class LoggerTopComponent extends TopComponent implements MessageLis
                     }
                     else if (input.contains("WCO:")) {
                         input = input.replace("WCO:", "");
+                        input = input.replace(">", "");
+                        input = input.replace("\n", "");
                         String filtered[] = input.split(",");
                         for (int j = 0; j < filtered.length; j++) {
                             float value = Float.parseFloat(filtered[j]);
@@ -171,9 +182,7 @@ public final class LoggerTopComponent extends TopComponent implements MessageLis
         }
         catch (Exception e) {
             
-        }
-        
-        
+        }        
     }
 
     public LoggerTopComponent() {
