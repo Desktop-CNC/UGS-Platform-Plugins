@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="com.cchraplak.ugs.platform.plugin.toolchanger">
+    <module_version install_time="1745422510582" last="true" origin="installer" specification_version="1.1">
+        <file crc="1204700906" name="config/Modules/com-cchraplak-ugs-platform-plugin-toolchanger.xml"/>
+        <file crc="891895094" name="modules/com-cchraplak-ugs-platform-plugin-toolchanger.jar"/>
+        <file crc="3803614837" name="update_tracking/com-cchraplak-ugs-platform-plugin-toolchanger.xml"/>
+    </module_version>
+</module>
