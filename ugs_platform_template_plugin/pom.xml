@@ -3,11 +3,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
+
+    <!-- Parent POM -->
     <parent>
-        <groupId>com.willwinder</groupId>
-        <artifactId>ugs-platform-parent</artifactId>
+        <groupId>com.willwinder.universalgcodesender</groupId>
+        <artifactId>ugs-parent</artifactId>
         <version>2.0-SNAPSHOT</version>
+        <relativePath>../../Universal-G-Code-Sender/pom.xml</relativePath>
     </parent>
+
+
     <groupId>org.ugs-tools</groupId>
     <artifactId>ugs_platform_template_plugin</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -19,58 +24,59 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <netbeans.version>12.5</netbeans.version>
+        <netbeans.version>15.0</netbeans.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-netbeans-api-annotations-common</artifactId>
-            <version>${netbeans.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-openide-windows</artifactId>
-            <version>${netbeans.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-openide-util</artifactId>
-            <version>${netbeans.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-openide-util-ui</artifactId>
-            <version>${netbeans.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-openide-util-lookup</artifactId>
-            <version>${netbeans.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-openide-awt</artifactId>
-            <version>${netbeans.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-netbeans-modules-settings</artifactId>
-            <version>${netbeans.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.willwinder</groupId>
-            <artifactId>ugs-platform-ugslib</artifactId>
+            <groupId>com.willwinder.universalgcodesender</groupId>
+            <artifactId>ugs-core</artifactId>
             <version>2.0-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.willwinder.universalgcodesender</groupId>
-                    <artifactId>ugs-pendant</artifactId>
-                </exclusion>
-            </exclusions>
+            <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.willwinder</groupId>
+            <groupId>com.willwinder.universalgcodesender</groupId>
+            <artifactId>ugs-platform-parent</artifactId>
+            <version>2.0-SNAPSHOT</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>com.willwinder.universalgcodesender</groupId>
+            <artifactId>ugs-platform-ugscore</artifactId>
+            <version>2.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openide</groupId>
+            <artifactId>org-openide-util</artifactId>
+            <version>RELEASE230</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openide</groupId>
+            <artifactId>org-openide-util-ui</artifactId>
+            <version>RELEASE230</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openide</groupId>
+            <artifactId>org-openide-util-lookup</artifactId>
+            <version>RELEASE230</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openide</groupId>
+            <artifactId>org-openide-modules</artifactId>
+            <version>RELEASE230</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openide</groupId>
+            <artifactId>org-openide-filesystems</artifactId>
+            <version>RELEASE230</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openide</groupId>
+            <artifactId>org-openide-awt</artifactId>
+            <version>RELEASE230</version>
+        </dependency>
+        <dependency>
+            <groupId>com.willwinder.universalgcodesender</groupId>
             <artifactId>ugs-platform-ugscore</artifactId>
             <version>2.0-SNAPSHOT</version>
         </dependency>
@@ -84,12 +90,11 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
                 <configuration>
-                    <source>17</source>
-                    <target>17</target>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
         </plugins>
     </build>
 
 </project>
-
