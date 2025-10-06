@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><module codename="org.ugs.plugins.ugs_platform_template_plugin">
-    <module_version install_time="1759697179799" last="true" origin="installer" specification_version="1.0">
+    <module_version install_time="1759765204724" last="true" origin="installer" specification_version="1.0">
         <file crc="144883246" name="config/Modules/org-ugs-plugins-ugs_platform_template_plugin.xml"/>
         <file crc="541077999" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/com-google-code-findbugs/jsr305.jar"/>
         <file crc="2449403980" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/commons-io/commons-io.jar"/>
         <file crc="773218024" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/org-ow2-asm/asm.jar"/>
         <file crc="1862699136" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/org-tukaani/xz.jar"/>
-        <file crc="1307820157" name="modules/org-ugs-plugins-ugs_platform_template_plugin.jar"/>
+        <file crc="2932423833" name="modules/org-ugs-plugins-ugs_platform_template_plugin.jar"/>
     </module_version>
 </module>
