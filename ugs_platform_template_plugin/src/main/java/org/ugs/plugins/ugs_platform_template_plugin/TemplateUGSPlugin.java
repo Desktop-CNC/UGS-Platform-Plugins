@@ -11,6 +11,7 @@ import com.willwinder.universalgcodesender.model.BackendAPI;
 import com.willwinder.universalgcodesender.model.events.ControllerStatusEvent;
 import com.willwinder.universalgcodesender.model.UGSEvent;
 import com.willwinder.universalgcodesender.listeners.ControllerStatus;
+import com.willwinder.universalgcodesender.listeners.MessageType;
 import com.willwinder.universalgcodesender.listeners.UGSEventListener;
 
 public class TemplateUGSPlugin extends ModuleInstall implements UGSEventListener {
@@ -26,6 +27,7 @@ public class TemplateUGSPlugin extends ModuleInstall implements UGSEventListener
         // get the backend upon start-up
         backend = Lookup.getDefault().lookup(BackendAPI.class);
         backend.addUGSEventListener(this); // attach this plugin to listen to UGS
+        this.backend.dispatchMessage(MessageType.INFO, "TemplateUGSPlugin OPEN\n");
     }
     
     /**
@@ -33,7 +35,7 @@ public class TemplateUGSPlugin extends ModuleInstall implements UGSEventListener
      */
     @Override
     public void close() {
-        System.out.print("TemplateUGSPlugin closed.");
+        this.backend.dispatchMessage(MessageType.INFO, "TemplateUGSPlugin closed\n");
     }
     
     /**
@@ -56,6 +58,6 @@ public class TemplateUGSPlugin extends ModuleInstall implements UGSEventListener
          * Handling by event type allows plugins to do stuff based on the type of event seen.
          * Based on the type of event, we can send different commands to the CNC, some can be custom commands.
          */
-        System.out.print("UGS Event Change to: " + event.toString());
+        this.backend.dispatchMessage(MessageType.INFO, "UGS Event Change to: " + event.toString());
     }
 }
