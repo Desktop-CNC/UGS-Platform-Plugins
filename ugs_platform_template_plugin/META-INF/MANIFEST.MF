@@ -1,5 +1,0 @@
-Manifest-Version: 1.0
-OpenIDE-Module: org.ugs.plugins.ugs_platform_template_plugin
-OpenIDE-Module-Name: UGS Platform Template Plugin
-OpenIDE-Module-Module-Dependencies: org.openide.modules,org.openide.util,org.openide.util.lookup
-
