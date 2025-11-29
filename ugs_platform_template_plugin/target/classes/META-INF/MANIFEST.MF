@@ -7,15 +7,64 @@ OpenIDE-Module-Module-Dependencies: org.openide.modules, org.openide.u
  til, org.openide.util.lookup, com.willwinder.universalgcodesender.ugs
  lib
 OpenIDE-Module-Specification-Version: 1.0
-OpenIDE-Module-Implementation-Version: 1.0-20251126
-OpenIDE-Module-Build-Version: 202511262204
+OpenIDE-Module-Implementation-Version: 1.0-20251129
+OpenIDE-Module-Build-Version: 202511292041
 OpenIDE-Module-Public-Packages: -
 OpenIDE-Module-Requires: org.openide.modules.ModuleFormat1
 X-Class-Path: ext/org.ugs.plugins.ugs_platform_template_plugin/org-ow2
  -asm/asm.jar ext/org.ugs.plugins.ugs_platform_template_plugin/org-tuk
  aani/xz.jar ext/org.ugs.plugins.ugs_platform_template_plugin/commons-
  io/commons-io.jar ext/org.ugs.plugins.ugs_platform_template_plugin/co
- m-google-code-findbugs/jsr305.jar
+ m-google-code-findbugs/jsr305.jar ext/org.ugs.plugins.ugs_platform_te
+ mplate_plugin/com-willwinder-universalgcodesender/ugs-core.jar ext/or
+ g.ugs.plugins.ugs_platform_template_plugin/org-glassfish-tyrus-bundle
+ s/tyrus-standalone-client.jar ext/org.ugs.plugins.ugs_platform_templa
+ te_plugin/javax-media/jmf.jar ext/org.ugs.plugins.ugs_platform_templa
+ te_plugin/org-swinglabs/swing-layout.jar ext/org.ugs.plugins.ugs_plat
+ form_template_plugin/com-google-code-gson/gson.jar ext/org.ugs.plugin
+ s.ugs_platform_template_plugin/org-yaml/snakeyaml.jar ext/org.ugs.plu
+ gins.ugs_platform_template_plugin/org-apache-commons/commons-lang3.ja
+ r ext/org.ugs.plugins.ugs_platform_template_plugin/com-fazecast/jSeri
+ alComm.jar ext/org.ugs.plugins.ugs_platform_template_plugin/com-googl
+ e-guava/guava.jar ext/org.ugs.plugins.ugs_platform_template_plugin/co
+ m-google-guava/failureaccess.jar ext/org.ugs.plugins.ugs_platform_tem
+ plate_plugin/com-google-guava/listenablefuture.jar ext/org.ugs.plugin
+ s.ugs_platform_template_plugin/org-checkerframework/checker-qual.jar 
+ ext/org.ugs.plugins.ugs_platform_template_plugin/com-google-errorpron
+ e/error_prone_annotations.jar ext/org.ugs.plugins.ugs_platform_templa
+ te_plugin/com-google-j2objc/j2objc-annotations.jar ext/org.ugs.plugin
+ s.ugs_platform_template_plugin/com-miglayout/miglayout-swing.jar ext/
+ org.ugs.plugins.ugs_platform_template_plugin/com-miglayout/miglayout-
+ core.jar ext/org.ugs.plugins.ugs_platform_template_plugin/org-apache-
+ commons/commons-csv.jar ext/org.ugs.plugins.ugs_platform_template_plu
+ gin/org-jmdns/jmdns.jar ext/org.ugs.plugins.ugs_platform_template_plu
+ gin/org-slf4j/slf4j-api.jar ext/org.ugs.plugins.ugs_platform_template
+ _plugin/net-glxn/qrgen.jar ext/org.ugs.plugins.ugs_platform_template_
+ plugin/com-google-zxing/javase.jar ext/org.ugs.plugins.ugs_platform_t
+ emplate_plugin/com-beust/jcommander.jar ext/org.ugs.plugins.ugs_platf
+ orm_template_plugin/com-github-jai-imageio/jai-imageio-core.jar ext/o
+ rg.ugs.plugins.ugs_platform_template_plugin/com-google-zxing/core.jar
+  ext/org.ugs.plugins.ugs_platform_template_plugin/org-openjdk-nashorn
+ /nashorn-core.jar ext/org.ugs.plugins.ugs_platform_template_plugin/or
+ g-ow2-asm/asm-commons.jar ext/org.ugs.plugins.ugs_platform_template_p
+ lugin/org-ow2-asm/asm-analysis.jar ext/org.ugs.plugins.ugs_platform_t
+ emplate_plugin/org-ow2-asm/asm-tree.jar ext/org.ugs.plugins.ugs_platf
+ orm_template_plugin/org-ow2-asm/asm-util.jar
 Maven-Class-Path: org.ow2.asm:asm:9.5 org.tukaani:xz:1.9 commons-io:co
- mmons-io:2.11.0 com.google.code.findbugs:jsr305:3.0.2
+ mmons-io:2.11.0 com.google.code.findbugs:jsr305:3.0.2 com.willwinder.
+ universalgcodesender:ugs-core:2.0-SNAPSHOT org.glassfish.tyrus.bundle
+ s:tyrus-standalone-client:1.16 javax.media:jmf:2.1.1e org.swinglabs:s
+ wing-layout:1.0.3 com.google.code.gson:gson:2.10.1 org.yaml:snakeyaml
+ :2.2 org.apache.commons:commons-lang3:3.12.0 com.fazecast:jSerialComm
+ :2.11.0 com.google.guava:guava:33.0.0-jre com.google.guava:failureacc
+ ess:1.0.2 com.google.guava:listenablefuture:9999.0-empty-to-avoid-con
+ flict-with-guava org.checkerframework:checker-qual:3.41.0 com.google.
+ errorprone:error_prone_annotations:2.23.0 com.google.j2objc:j2objc-an
+ notations:2.8 com.miglayout:miglayout-swing:11.4.2 com.miglayout:migl
+ ayout-core:11.4.2 org.apache.commons:commons-csv:1.9.0 org.jmdns:jmdn
+ s:3.5.8 org.slf4j:slf4j-api:1.7.25 net.glxn:qrgen:1.4 com.google.zxin
+ g:javase:3.5.3 com.beust:jcommander:1.82 com.github.jai-imageio:jai-i
+ mageio-core:1.4.0 com.google.zxing:core:3.5.3 org.openjdk.nashorn:nas
+ horn-core:15.4 org.ow2.asm:asm-commons:7.3.1 org.ow2.asm:asm-analysis
+ :7.3.1 org.ow2.asm:asm-tree:7.3.1 org.ow2.asm:asm-util:7.3.1
 

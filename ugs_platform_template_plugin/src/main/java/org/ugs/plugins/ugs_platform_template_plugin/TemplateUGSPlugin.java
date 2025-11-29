@@ -15,10 +15,13 @@ import com.willwinder.universalgcodesender.listeners.ControllerStatus;
 import com.willwinder.universalgcodesender.listeners.MessageType;
 import com.willwinder.universalgcodesender.listeners.UGSEventListener;
 
+import java.util.logging.Logger;
+
 public class TemplateUGSPlugin extends ModuleInstall implements UGSEventListener {
 
     // These are the UGS backend objects for interacting with the backend.
     private final BackendAPI backend_api;
+    private static final Logger LOGGER = Logger.getLogger(TemplateUGSPlugin.class.getName());
     
     public TemplateUGSPlugin() {
         // This is how to access the UGS backend and register the listener.
@@ -48,6 +51,7 @@ public class TemplateUGSPlugin extends ModuleInstall implements UGSEventListener
          * Handling by event type allows plugins to do stuff based on the type of event seen.
          * Based on the type of event, we can send different commands to the CNC, some can be custom commands.
          */
+        LOGGER.info("This goes to console");
         backend_api.dispatchMessage(MessageType.INFO, "UGS Event Change to: " + event.toString());
     }
 }

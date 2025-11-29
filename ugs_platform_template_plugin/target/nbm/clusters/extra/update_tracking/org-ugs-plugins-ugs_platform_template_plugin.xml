@@ -1,10 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?><module codename="org.ugs.plugins.ugs_platform_template_plugin">
-    <module_version install_time="1764194698726" last="true" origin="installer" specification_version="1.0">
+    <module_version install_time="1764448877009" last="true" origin="installer" specification_version="1.0">
         <file crc="144883246" name="config/Modules/org-ugs-plugins-ugs_platform_template_plugin.xml"/>
+        <file crc="3188303384" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/com-beust/jcommander.jar"/>
+        <file crc="267176133" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/com-fazecast/jSerialComm.jar"/>
+        <file crc="3057353881" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/com-github-jai-imageio/jai-imageio-core.jar"/>
         <file crc="541077999" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/com-google-code-findbugs/jsr305.jar"/>
+        <file crc="3542709268" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/com-google-code-gson/gson.jar"/>
+        <file crc="3173945564" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/com-google-errorprone/error_prone_annotations.jar"/>
+        <file crc="1925647747" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/com-google-guava/failureaccess.jar"/>
+        <file crc="1665694093" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/com-google-guava/guava.jar"/>
+        <file crc="4084025488" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/com-google-guava/listenablefuture.jar"/>
+        <file crc="3912299270" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/com-google-j2objc/j2objc-annotations.jar"/>
+        <file crc="1212458877" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/com-google-zxing/core.jar"/>
+        <file crc="3393270827" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/com-google-zxing/javase.jar"/>
+        <file crc="2111236877" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/com-miglayout/miglayout-core.jar"/>
+        <file crc="1172287255" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/com-miglayout/miglayout-swing.jar"/>
+        <file crc="225483969" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/com-willwinder-universalgcodesender/ugs-core.jar"/>
         <file crc="2449403980" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/commons-io/commons-io.jar"/>
+        <file crc="482760628" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/javax-media/jmf.jar"/>
+        <file crc="2833986787" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/net-glxn/qrgen.jar"/>
+        <file crc="4206470451" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/org-apache-commons/commons-csv.jar"/>
+        <file crc="167814075" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/org-apache-commons/commons-lang3.jar"/>
+        <file crc="2488449935" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/org-checkerframework/checker-qual.jar"/>
+        <file crc="3289551931" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/org-glassfish-tyrus-bundles/tyrus-standalone-client.jar"/>
+        <file crc="1166155585" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/org-jmdns/jmdns.jar"/>
+        <file crc="3378676094" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/org-openjdk-nashorn/nashorn-core.jar"/>
+        <file crc="1284441286" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/org-ow2-asm/asm-analysis.jar"/>
+        <file crc="748652828" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/org-ow2-asm/asm-commons.jar"/>
+        <file crc="2246857092" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/org-ow2-asm/asm-tree.jar"/>
+        <file crc="767728442" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/org-ow2-asm/asm-util.jar"/>
         <file crc="773218024" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/org-ow2-asm/asm.jar"/>
+        <file crc="172552281" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/org-slf4j/slf4j-api.jar"/>
+        <file crc="3379943687" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/org-swinglabs/swing-layout.jar"/>
         <file crc="1862699136" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/org-tukaani/xz.jar"/>
-        <file crc="170001481" name="modules/org-ugs-plugins-ugs_platform_template_plugin.jar"/>
+        <file crc="1507991302" name="modules/ext/org.ugs.plugins.ugs_platform_template_plugin/org-yaml/snakeyaml.jar"/>
+        <file crc="1832865301" name="modules/org-ugs-plugins-ugs_platform_template_plugin.jar"/>
     </module_version>
 </module>
